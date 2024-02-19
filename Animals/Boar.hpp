@@ -1,5 +1,5 @@
 #include "Animals.hpp"
-class Bear : public Predators {
+class Boar : public Predators {
     public:
         void say();
 };
