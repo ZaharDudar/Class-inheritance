@@ -2,5 +2,5 @@
 class Goose : public  Herbivores {
 public:
     void say();
-    string sprite = "Goose.png";
+    string sprite;
 };

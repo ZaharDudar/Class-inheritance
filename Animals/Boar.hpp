@@ -1,6 +1,6 @@
 #include "Animals.hpp"
 class Boar : public Predators {
     public:
-        void say();
-        string sprite = "Boar.png";
+        void say(); 
+        string sprite;
 };

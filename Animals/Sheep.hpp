@@ -2,6 +2,6 @@
 class Sheep : public  Herbivores {
 public:
     void say();
-    string sprite = "Sheep.png";
+    string sprite;
  
 };
