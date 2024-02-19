@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include "Food.hpp"
-
+#include <string>
 using namespace std;
 
 class Animals

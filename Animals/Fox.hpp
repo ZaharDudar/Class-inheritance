@@ -2,4 +2,5 @@
 class Fox : public Predators{
     public:
         void say();
+        string sprite = "Fox.png";
 };
