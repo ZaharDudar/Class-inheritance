@@ -2,5 +2,5 @@
 class Cow : public  Herbivores {
 public:
     void say();
-    string sprite;
+   
 };

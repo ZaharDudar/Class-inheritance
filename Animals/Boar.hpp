@@ -2,5 +2,5 @@
 class Boar : public Predators {
     public:
         void say(); 
-        string sprite;
+        
 };

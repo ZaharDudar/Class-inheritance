@@ -12,6 +12,7 @@ protected:
 public:
     virtual void say() = 0;
     virtual bool canEat(Food *food) = 0;
+    string sprite;
     ~Animals(){};
 };
 class Herbivores : public Animals {
