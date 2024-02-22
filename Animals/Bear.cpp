@@ -2,3 +2,6 @@
 void Bear::say(){
     std::cout<<"I'm bear, Rhhh!\n";
 }
+Bear::Bear(){
+    sprite = "Boar.png";
+}
