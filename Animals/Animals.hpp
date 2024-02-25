@@ -5,35 +5,46 @@
 #include "Food.hpp"
 #include <string>
 #include <chrono>
+#include <cmath>
 #include "SFML/System/Vector2.hpp"
 
 using namespace std;
+
+// enum AnimalTypes{
+// Boar,
+// Cow,
+// Fox,
+// Goose,
+// Gorilla,
+// Pig,
+// Sheep,
+// Wolf
+// };
 
 class Animals
 {
 protected:
     int legs;
-    // sf::Vector2f position;
+    std::vector<string> attractors;
+    std::vector<string> repulsors;
+    float moveSpeed;
+    string typeName;
 public:
+    sf::Vector2f position; //------change back to protected
     int animFrame=0;
     int64_t lastAnimUpdate;
     string sprite;
-    sf::Vector2f position;
     float collisionRadius, viewRarius;
     bool lookDirection; //false for left, true for right
-    float moveSpeed;
-    // Animals *chase, *avoid;
     sf::Vector2f aiDirection(std::vector<Animals*>*, bool);
     float getSqrDistanceTo(Animals*);
     bool circleCollision(Animals*);
-    void setCoords(int, int);
+    void setCoords(float, float);
     void move(sf::Vector2f, float);
     virtual void say() = 0;
     virtual bool canEat(Food *food) = 0;
     float getCollisionRadius();
     ~Animals(){};
-    std::vector<string> attractors;
-    std::vector<string> repulsors;
 };
 
 class Herbivores : public Animals {

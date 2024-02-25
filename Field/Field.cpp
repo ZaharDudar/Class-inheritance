@@ -5,6 +5,8 @@
 Field::Field(){
     this->previousFrameTime = getMainTime();
     this->currentFrameTime = getMainTime();
+    this->fieldWidth = 500;
+    this->fieldHeight = 500;
 }
 
 Field::~Field(){
@@ -22,10 +24,10 @@ void Field::spawnAnimal(string animalType){
     }
     std::random_device rd;   // non-deterministic generator
     std::mt19937 gen(rd());  // to seed mersenne twister.
-    std::uniform_int_distribution<> dist(animal->getCollisionRadius(), this->fieldWidth - animal->getCollisionRadius()); // distribute results between 1 and 6 inclusive.
-    int xCoord = dist(gen);
-    std::uniform_int_distribution<> dist(animal->getCollisionRadius(), this->fieldHeight - animal->getCollisionRadius()); // distribute results between 1 and 6 inclusive.
-    int yCoord = dist(gen);
+    std::uniform_int_distribution<> distX(animal->getCollisionRadius(), this->fieldWidth - animal->getCollisionRadius());
+    int xCoord = distX(gen);
+    std::uniform_int_distribution<> distY(animal->getCollisionRadius(), this->fieldHeight - animal->getCollisionRadius());
+    int yCoord = distY(gen);
     animal->setCoords(xCoord, yCoord);
 }
 
@@ -38,6 +40,10 @@ void Field::update(){
     for (int i = 0; i < this->animalArr.size(); i++){
         animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true), this->currentFrameTime - this->previousFrameTime);
     }
-    this->currentFrameTime = this->previousFrameTime;
+    this->previousFrameTime = this->currentFrameTime;
     this->currentFrameTime = getMainTime();
 }
+
+std::vector<Animals*> Field::getAnimalArr(){
+    return this->animalArr;
+};
