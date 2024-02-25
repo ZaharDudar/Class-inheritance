@@ -9,7 +9,13 @@
 
 int main(){
     Field sunnyHill;
-    Drawer drawer(sunnyHill.fieldWidth, sunnyHill.fieldHeight);
+    Drawer drawer(sunnyHill.fieldWidth, sunnyHill.fieldHeight,2);
+    sunnyHill.spawnAnimal("Wolf");
+    sunnyHill.spawnAnimal("Wolf");
+    sunnyHill.spawnAnimal("Wolf");
+    sunnyHill.spawnAnimal("Wolf");
+    sunnyHill.spawnAnimal("Wolf");
+    sunnyHill.spawnAnimal("Wolf");
     sunnyHill.spawnAnimal("Wolf");
     while(true){
         sunnyHill.update();

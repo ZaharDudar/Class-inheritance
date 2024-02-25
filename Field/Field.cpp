@@ -40,7 +40,7 @@ void Field::update(){
     for (int i = 0; i < this->animalArr.size(); i++){
         animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true), this->currentFrameTime - this->previousFrameTime);
     }
-    this->currentFrameTime = this->previousFrameTime;
+    this->previousFrameTime = this->currentFrameTime;
     this->currentFrameTime = getMainTime();
 }
 

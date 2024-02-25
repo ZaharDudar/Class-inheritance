@@ -1,6 +1,6 @@
 #include "Animals.hpp"
 
-void Animals::setCoords(int xCoord, int yCoord){
+void Animals::setCoords(float xCoord, float yCoord){
     this->position = sf::Vector2f(xCoord, yCoord);
 }
 //true for colliding, false for not colliding
@@ -12,8 +12,14 @@ bool Animals::circleCollision(Animals* animal){
 };
 
 void Animals::move(sf::Vector2f direction, float delta){
-    sf::Vector2f newPosition = this->position + delta * direction * this->moveSpeed;
-    setCoords(newPosition.x, newPosition.y);
+    sf::Vector2f newPosition = this->position + this->moveSpeed * delta * direction ;
+    if(direction.x > 0) {
+        lookDirection=true;
+    }
+    else{
+        lookDirection=false;
+    }
+    setCoords(newPosition.x,newPosition.y);
 }
 
 float Animals::getCollisionRadius(){
@@ -35,31 +41,53 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
             continue;
         }
         for (int j = 0; j < this->attractors.size(); j++){
-            if ((this->typeName == (this->attractors)[j]) || 
-                (this->getSqrDistanceTo(closestAttr) > this->getSqrDistanceTo((*animalArr)[i]))){
+            if (this->typeName == (this->attractors)[j]){
                 if (closestAttr == NULL){
                     closestAttr = (*animalArr)[i];
                     break;
                 }
+                if(this->getSqrDistanceTo(closestAttr) > this->getSqrDistanceTo((*animalArr)[i])){
+                    closestAttr = (*animalArr)[i];
+                }
             }
         }
         for (int j = 0; j < this->repulsors.size(); j++){
-            if ((this->typeName == (this->repulsors)[j]) || 
-                (this->getSqrDistanceTo(closestRep) > this->getSqrDistanceTo((*animalArr)[i]))){
+            if (this->typeName == (this->repulsors)[j]){
                 if (closestRep == NULL){
                     closestRep = (*animalArr)[i];
                     break;
                 }
+                if(this->getSqrDistanceTo(closestRep) > this->getSqrDistanceTo((*animalArr)[i])){
+                    closestRep = (*animalArr)[i];
+                }
             }
         }
     }
+
+    if(closestRep==NULL and closestAttr==NULL){
+        return sf::Vector2f(0,0);
+    }
+
+    sf::Vector2f diff;
     if (repulsorPriority){
-        sf::Vector2f diff = closestRep->position - this->position;
-        float abs = sqrt(diff.x*diff.x + diff.y+diff.y);
+        if(closestRep!=NULL){
+            diff = -closestRep->position + this->position;
+        }
+        else{
+            diff = -this->position + closestAttr->position;
+        }
+        float abs = sqrt(diff.x*diff.x + diff.y*diff.y);
+        // std::cout<<diff.x/abs<<" "<<diff.y/abs<<"\n";
         return diff/abs;
     }else{
-        sf::Vector2f diff = this->position - closestAttr->position;
-        float abs = sqrt(diff.x*diff.x + diff.y+diff.y);
+        if(closestAttr!=NULL){
+            diff = -this->position + closestAttr->position;
+        }
+        else{
+            diff = -closestRep->position + this->position;
+        }
+        float abs = sqrt(diff.x*diff.x + diff.y*diff.y);
+        // std::cout<<diff.x/abs<<" "<<diff.y/abs<<"\n";
         return diff/abs;
     }
 }

@@ -39,7 +39,7 @@ public:
     sf::Vector2f aiDirection(std::vector<Animals*>*, bool);
     float getSqrDistanceTo(Animals*);
     bool circleCollision(Animals*);
-    void setCoords(int, int);
+    void setCoords(float, float);
     void move(sf::Vector2f, float);
     virtual void say() = 0;
     virtual bool canEat(Food *food) = 0;
