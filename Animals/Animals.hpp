@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include "Food.hpp"
+#include <string>
+#include <chrono>
 #include "SFML/System/Vector2.hpp"
 
 using namespace std;
@@ -10,12 +12,16 @@ using namespace std;
 class Animals
 {
 protected:
+    int legs;
+    // sf::Vector2f position;
+public:
+    int animFrame=0;
+    int64_t lastAnimUpdate;
+    string sprite;
     sf::Vector2f position;
     float collisionRadius, viewRarius;
     bool lookDirection; //false for left, true for right
     float moveSpeed;
-    string typeName;
-public:
     // Animals *chase, *avoid;
     sf::Vector2f aiDirection(std::vector<Animals*>*, bool);
     float getSqrDistanceTo(Animals*);

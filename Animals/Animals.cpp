@@ -1,5 +1,5 @@
 #include "Animals.hpp"
-
+#include <cmath>
 void Animals::setCoords(int xCoord, int yCoord){
     this->position = sf::Vector2f(xCoord, yCoord);
 }

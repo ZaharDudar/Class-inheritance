@@ -1,6 +1,8 @@
 #include "Animals.hpp"
-class Bird : public  Herbivores {
+class Pig : public  Herbivores {
+
 public:
+   
     void say();
- 
+    
 };
