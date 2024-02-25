@@ -35,7 +35,7 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
             continue;
         }
         for (int j = 0; j < this->attractors.size(); j++){
-            if ((typeid((*animalArr)[i]).name() == (this->attractors)[j]) || 
+            if ((this->typeName == (this->attractors)[j]) || 
                 (this->getSqrDistanceTo(closestAttr) > this->getSqrDistanceTo((*animalArr)[i]))){
                 if (closestAttr == NULL){
                     closestAttr = (*animalArr)[i];
@@ -44,7 +44,7 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
             }
         }
         for (int j = 0; j < this->repulsors.size(); j++){
-            if ((typeid((*animalArr)[i]).name() == (this->repulsors)[j]) || 
+            if ((this->typeName == (this->repulsors)[j]) || 
                 (this->getSqrDistanceTo(closestRep) > this->getSqrDistanceTo((*animalArr)[i]))){
                 if (closestRep == NULL){
                     closestRep = (*animalArr)[i];

@@ -14,6 +14,7 @@ protected:
     float collisionRadius, viewRarius;
     bool lookDirection; //false for left, true for right
     float moveSpeed;
+    string typeName;
 public:
     // Animals *chase, *avoid;
     sf::Vector2f aiDirection(std::vector<Animals*>*, bool);
