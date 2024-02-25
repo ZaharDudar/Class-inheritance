@@ -17,14 +17,11 @@ protected:
 public:
     int animFrame=0;
     int64_t lastAnimUpdate;
-    virtual void say() = 0;
-    virtual bool canEat(Food *food) = 0;
     string sprite;
     sf::Vector2f position;
     float collisionRadius, viewRarius;
     bool lookDirection; //false for left, true for right
     float moveSpeed;
-public:
     // Animals *chase, *avoid;
     sf::Vector2f aiDirection(std::vector<Animals*>*, bool);
     float getSqrDistanceTo(Animals*);
