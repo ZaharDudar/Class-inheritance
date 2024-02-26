@@ -4,4 +4,16 @@ void Gorilla::say(){
 }
 Gorilla::Gorilla(){
     this->sprite = "Gorilla.png";
+    this->typeName = "Gorilla";
+
+    this->attractors.push_back("Fox");
+    this->attractors.push_back("Wolf");
+    this->attractors.push_back("Gorilla");
+
+    this->food.push_back("Fox");
+    this->food.push_back("Wolf");
+
+    this->viewRarius = 200;
+    this->collisionRadius = 16*3;
+    this->moveSpeed=8;
 }

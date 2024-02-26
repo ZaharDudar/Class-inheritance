@@ -4,4 +4,13 @@ void Pig::say(){
 }
 Pig::Pig(){
     this->sprite = "Pig.png";
+    this->typeName = "Pig";
+
+    this->repulsors.push_back("Fox");
+    this->repulsors.push_back("Wolf");
+    this->attractors.push_back("Pig");
+    
+    this->viewRarius = 150;
+    this->collisionRadius = 8*3;
+    this->moveSpeed=10;
 }
