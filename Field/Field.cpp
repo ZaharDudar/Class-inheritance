@@ -16,10 +16,39 @@ Field::~Field(){
 //possible type inputs: Boar, Cow, Fox, Goose, Gorilla, Pig, Sheep, Wolf
 void Field::spawnAnimal(string animalType){
     Animals *animal;
-    if (animalType == "Wolf"){ //-------------------------------------когда вмёржим в мейн въебать ещё ифов
+    if (animalType == "Wolf"){ 
         animal = new Wolf;
         animalArr.push_back(animal);
-    }else{
+    }
+    else if (animalType == "Sheep"){ 
+        animal = new Sheep;
+        animalArr.push_back(animal);
+    }
+    else if (animalType == "Pig"){ 
+        animal = new Pig;
+        animalArr.push_back(animal);
+    }
+    else if (animalType == "Gorilla"){ 
+        animal = new Gorilla;
+        animalArr.push_back(animal);
+    }
+    else if (animalType == "Goose"){ 
+        animal = new Goose;
+        animalArr.push_back(animal);
+    }
+    else if (animalType == "Fox"){ 
+        animal = new Fox;
+        animalArr.push_back(animal);
+    }
+    else if (animalType == "Cow"){ 
+        animal = new Cow;
+        animalArr.push_back(animal);
+    }
+    else if (animalType == "Boar"){ 
+        animal = new Boar;
+        animalArr.push_back(animal);
+    }
+    else{
         throw std::invalid_argument( "recieved invalid type argument" );
     }
     std::random_device rd;   // non-deterministic generator

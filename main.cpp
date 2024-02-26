@@ -11,12 +11,14 @@ int main(){
     Field sunnyHill;
     Drawer drawer(sunnyHill.fieldWidth, sunnyHill.fieldHeight,2);
     sunnyHill.spawnAnimal("Wolf");
-    sunnyHill.spawnAnimal("Wolf");
-    sunnyHill.spawnAnimal("Wolf");
-    sunnyHill.spawnAnimal("Wolf");
-    sunnyHill.spawnAnimal("Wolf");
-    sunnyHill.spawnAnimal("Wolf");
-    sunnyHill.spawnAnimal("Wolf");
+    sunnyHill.spawnAnimal("Sheep");
+    sunnyHill.spawnAnimal("Gorilla");
+    sunnyHill.spawnAnimal("Goose");
+    sunnyHill.spawnAnimal("Cow");
+    sunnyHill.spawnAnimal("Fox");
+    sunnyHill.spawnAnimal("Boar");
+     sunnyHill.spawnAnimal("Pig");
+
     while(true){
         sunnyHill.update();
         drawer.draw(sunnyHill.getAnimalArr());
