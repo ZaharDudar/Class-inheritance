@@ -27,6 +27,7 @@ protected:
     int legs;
     std::vector<string> attractors;
     std::vector<string> repulsors;
+    std::vector<string> food; // eats this sht, not eaten by it
     float moveSpeed;
     string typeName;
 public:
@@ -42,23 +43,16 @@ public:
     void setCoords(float, float);
     void move(sf::Vector2f, float);
     virtual void say() = 0;
-    virtual bool canEat(Food *food) = 0;
+    //deletes every food in 2.5 radius of collisionRadius
+    void foodCheck(std::vector<Animals*>*);
     float getCollisionRadius();
     ~Animals(){};
 };
 
 class Herbivores : public Animals {
-public:
-    bool canEat(Food *food){
-        return !food->isMeat();
-    }
 };
 
 class Predators : public Animals {
-    public:
-        bool canEat(Food *food){
-            return food->isMeat(); 
-        }
 };
 
 
