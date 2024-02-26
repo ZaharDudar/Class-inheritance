@@ -9,7 +9,7 @@
 
 int main(){
     Field sunnyHill;
-    Drawer drawer(sunnyHill.fieldWidth, sunnyHill.fieldHeight,2);
+    Drawer drawer(sunnyHill.fieldWidth, sunnyHill.fieldHeight, 3);
     sunnyHill.spawnAnimal("Wolf");
     sunnyHill.spawnAnimal("Wolf");
     sunnyHill.spawnAnimal("Wolf");

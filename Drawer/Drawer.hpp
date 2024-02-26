@@ -5,7 +5,6 @@
 #include "../Animals/Animals.hpp"
 #include <chrono>
 
-
 class Drawer
 {
 private:
@@ -17,9 +16,21 @@ private:
     int animationFPS = 5;
     float scalingFactor = 1;
     void loadTextures();
+    void updateGui();
+    std::vector<Button> buttons;
 public:
     Drawer(int W,int H);
     Drawer(int W,int H, float scF);
+    void addSpawnButton(string,void sp(string),int, int, int, int);
     void draw(vector<Animals*>);
     ~Drawer(){};
+};
+
+class Button{
+    protected:
+        std::string test;
+        sf::Sprite selfSprite;
+    public:
+        Button(sf::Sprite);
+        bool checkPress(sf::Vector2f);
 };

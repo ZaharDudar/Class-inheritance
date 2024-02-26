@@ -43,10 +43,13 @@ void Drawer::draw(vector<Animals*> entities){
         if(ev.type == sf::Event::Closed){
             window->close();
         }
+        // if(ev.type == sf::Event::)
+        updateGui();
     }  
     auto currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     window->clear();
     for(int ent_id=0; ent_id < entities.capacity(); ent_id++){
+        
         if(currentTime - (*entities[ent_id]).lastAnimUpdate > 1000/animationFPS){
             (*entities[ent_id]).animFrame+=1;
             if((*entities[ent_id]).animFrame>=4) 
@@ -65,4 +68,23 @@ void Drawer::draw(vector<Animals*> entities){
     }
     window->display();
     
+}
+
+void Drawer::addSpawnButton(string animName, void sp(string),int x, int y, int w, int h){
+    sf::Texture texture;
+    if(!texture.loadFromFile(string{"./PNG's/"} + animName + string{".png"})){}
+    sf::Vector2u shape = texture.getSize();
+    sf::Sprite ent;
+    ent.setTexture(texture);
+    ent.setTextureRect(sf::IntRect(0,0,shape.x/4,shape.y));
+    ent.setScale(4*w/shape.x,h/shape.y);
+    ent.setPosition(x,y);
+    buttons.push_back(Button(ent));
+}
+
+void Drawer::updateGui(){
+    for(int b_id=0;b_id<buttons.size(); b_id++){
+        
+
+    }
 }

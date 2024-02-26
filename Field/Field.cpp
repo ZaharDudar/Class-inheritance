@@ -5,8 +5,8 @@
 Field::Field(){
     this->previousFrameTime = getMainTime();
     this->currentFrameTime = getMainTime();
-    this->fieldWidth = 500;
-    this->fieldHeight = 500;
+    this->fieldWidth = 1200;
+    this->fieldHeight = 900;
 }
 
 Field::~Field(){
