@@ -5,8 +5,8 @@
 Field::Field(){
     this->previousFrameTime = getMainTime();
     this->currentFrameTime = getMainTime();
-    this->fieldWidth = 500;
-    this->fieldHeight = 500;
+    this->fieldWidth = 1200;
+    this->fieldHeight = 1200;
 }
 
 Field::~Field(){
@@ -14,7 +14,7 @@ Field::~Field(){
 }
 
 //possible type inputs: Boar, Cow, Fox, Goose, Gorilla, Pig, Sheep, Wolf
-void Field::spawnAnimal(string animalType){
+void Field::spawnAnimal(string animalType, sf::Vector2f pos){
     Animals *animal;
     if (animalType == "Wolf"){ 
         animal = new Wolf;
@@ -51,13 +51,16 @@ void Field::spawnAnimal(string animalType){
     else{
         throw std::invalid_argument( "recieved invalid type argument" );
     }
+    animal->setCoords(pos.x, pos.y);
+}
+void Field::spawnAnimal(string animalType){
     std::random_device rd;   // non-deterministic generator
     std::mt19937 gen(rd());  // to seed mersenne twister.
-    std::uniform_int_distribution<> distX(animal->getCollisionRadius(), this->fieldWidth - animal->getCollisionRadius());
+    std::uniform_int_distribution<> distX(10, this->fieldWidth - 10);
     int xCoord = distX(gen);
-    std::uniform_int_distribution<> distY(animal->getCollisionRadius(), this->fieldHeight - animal->getCollisionRadius());
+    std::uniform_int_distribution<> distY(10, this->fieldHeight - 10);
     int yCoord = distY(gen);
-    animal->setCoords(xCoord, yCoord);
+    this->spawnAnimal(animalType, sf::Vector2f(xCoord, yCoord));
 }
 
 //as seconds
