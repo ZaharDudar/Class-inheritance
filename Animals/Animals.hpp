@@ -30,7 +30,6 @@ protected:
     std::vector<string> food; // eats this sht, not eaten by it
     float moveSpeed;
     string typeName;
-    std::vector<string> food;
 public:
     bool forcedReturn; // shit for collision
     sf::Vector2f position; //------change back to protected
