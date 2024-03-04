@@ -17,6 +17,7 @@ int main(){
     sunnyHill.spawnAnimal("Wolf");
     sunnyHill.spawnAnimal("Wolf");
     sunnyHill.spawnAnimal("Wolf");
+    drawer.addSpawnButton("Wolf", &sunnyHill, 0,0,50,50);
     while(true){
         sunnyHill.update();
         drawer.draw(sunnyHill.getAnimalArr());

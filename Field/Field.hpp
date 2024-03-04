@@ -18,6 +18,7 @@ public:
     Field();
     ~Field();
     void spawnAnimal(string);
+    void spawnAnimal(string, sf::Vector2f);
     float getMainTime();
     void update();
     std::vector<Animals*> getAnimalArr();
