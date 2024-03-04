@@ -6,11 +6,24 @@
 #include <chrono>
 
 Drawer::Drawer(int W,int H){
+    backgroundTexture.loadFromFile("./Backgroungs/field.png");
+    background.setTexture(backgroundTexture);
+    sf::Vector2u shape = backgroundTexture.getSize();
+    background.setScale(((float)W)/shape.x, ((float)H)/shape.y);
+
+    
     this->window = new sf::RenderWindow(sf::VideoMode(W,H), "sim");
+    buttonBackround.setFillColor(sf::Color(209, 206, 197));
     loadTextures();
 }
 Drawer::Drawer(int W,int H, float scF){
+    backgroundTexture.loadFromFile("./Backgroungs/field.png");
+    background.setTexture(backgroundTexture);
+    sf::Vector2u shape = backgroundTexture.getSize();
+    background.setScale(((float)W)/shape.x, ((float)H)/shape.y);
+
     this->window = new sf::RenderWindow(sf::VideoMode(W,H), "sim");
+    buttonBackround.setFillColor(sf::Color(209, 206, 197));
     this->scalingFactor = scF;
     loadTextures();
 }
@@ -58,6 +71,7 @@ void Drawer::draw(vector<Animals*> entities){
     }  
     auto currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     window->clear();
+    window->draw(background);
     for(int ent_id=0; ent_id < entities.size(); ent_id++){
         
         if(currentTime - (*entities[ent_id]).lastAnimUpdate > 1000/animationFPS){
@@ -76,6 +90,7 @@ void Drawer::draw(vector<Animals*> entities){
             window->draw(entitySpritesReverse[string{"./PNG's/"} + (*entities[ent_id]).sprite][(*entities[ent_id]).animFrame]);
         }
     }
+    window->draw(buttonBackround);
     for(int b_id = 0; b_id < buttons.size(); b_id++){
         window->draw(buttons[b_id].selfSprite);
         if(buttons[b_id].seleted){
@@ -89,10 +104,28 @@ void Drawer::draw(vector<Animals*> entities){
         }
     }
     window->display();
-
 }
 
 void Drawer::addSpawnButton(string animName, Field *field,int x, int y, int w, int h){
+    sf::Vector2f bgBPos = buttonBackround.getPosition();
+    sf::Vector2f bgBSize = buttonBackround.getSize();
+    if(setFirstButton){
+        buttonBackround.setPosition(x-outlineBg,y-outlineBg);
+        buttonBackround.setSize(sf::Vector2f(x + w + outlineBg,y + h + outlineBg));
+        setFirstButton = false;
+    }
+    if(x < bgBPos.x){
+        buttonBackround.setPosition(x-outlineBg,bgBPos.y);
+    }
+    if(y < bgBPos.y){
+        buttonBackround.setPosition(bgBPos.x,y-outlineBg);
+    }
+    if(x + w > bgBSize.x + bgBPos.x){
+        buttonBackround.setSize(sf::Vector2f(x + w - bgBPos.x + outlineBg,bgBSize.y));
+    }
+    if(y + h > bgBSize.y + bgBPos.y){
+        buttonBackround.setSize(sf::Vector2f(bgBPos.x, y + h - bgBPos.y + outlineBg));
+    }
     sf::Vector2u shape = textures[string{"./PNG's/"} + animName + string(".png")][0].getSize();
     sf::Sprite ent;
     ent.setTexture(textures[string{"./PNG's/"} + animName + string(".png")][0]);

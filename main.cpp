@@ -17,10 +17,10 @@ int main(){
     sunnyHill.spawnAnimal("Fox");
     sunnyHill.spawnAnimal("Pig");
     sunnyHill.spawnAnimal("Sheep");
-    drawer.addSpawnButton("Wolf", &sunnyHill, 0,0,50,50);
-    drawer.addSpawnButton("Boar", &sunnyHill, 0,60,50,50);
-    drawer.addSpawnButton("Sheep", &sunnyHill, 60,0,50,50);
-    drawer.addSpawnButton("Fox", &sunnyHill, 60,60,50,50);
+    drawer.addSpawnButton("Wolf", &sunnyHill, 20,20,50,50);
+    drawer.addSpawnButton("Boar", &sunnyHill, 20,80,50,50);
+    drawer.addSpawnButton("Sheep", &sunnyHill, 80,20,50,50);
+    drawer.addSpawnButton("Fox", &sunnyHill, 80,80,50,50);
     while(true){
         sunnyHill.update();
         drawer.draw(sunnyHill.getAnimalArr());

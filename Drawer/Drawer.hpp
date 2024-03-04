@@ -44,6 +44,12 @@ private:
     void loadTextures();
     void updateGui(int x,int y);
     std::vector<Button> buttons;
+    sf::Texture backgroundTexture;
+    sf::Sprite background;
+    bool setFirstButton = true;
+
+    int outlineBg = 5;
+    sf::RectangleShape buttonBackround;
 public:
     Drawer(int W,int H);
     Drawer(int W,int H, float scF);
