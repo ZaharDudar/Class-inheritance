@@ -8,5 +8,8 @@ Wolf::Wolf(){
     this->attractors.push_back("Sheep");
     this->attractors.push_back("Wolf");
     this->repulsors.push_back("Gorilla");
-    this->moveSpeed=10;
+    this->food.push_back("Wolf");
+    this->moveSpeed=100;
+    this->viewRarius = 1400;
+    this->collisionRadius = 8 * 3;
 }

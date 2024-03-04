@@ -31,6 +31,7 @@ protected:
     float moveSpeed;
     string typeName;
 public:
+    bool forcedReturn; // shit for collision
     sf::Vector2f position; //------change back to protected
     int animFrame=0;
     int64_t lastAnimUpdate;
@@ -46,6 +47,8 @@ public:
     //deletes every food in 2.5 radius of collisionRadius
     void foodCheck(std::vector<Animals*>*);
     float getCollisionRadius();
+    bool alive;
+    Animals();
     ~Animals(){};
 };
 
