@@ -81,14 +81,15 @@ void Drawer::draw(vector<Animals*> entities){
         if(buttons[b_id].seleted){
             sf::Vector2u selfSize = buttons[b_id].selfSprite.getTexture()->getSize();
             sf::Vector2f scaleModifier = buttons[b_id].selfSprite.getScale();
+            scaleModifier.x /= 4; 
             sf::RectangleShape highlight(sf::Vector2f((float)selfSize.x*scaleModifier.x, (float)selfSize.y*scaleModifier.y));
-            highlight.setFillColor(sf::Color(0,0,0,100));
+            highlight.setFillColor(sf::Color(0,255,0,100));
             highlight.setPosition(buttons[b_id].selfSprite.getPosition());
             window->draw(highlight);
         }
     }
     window->display();
-    
+
 }
 
 void Drawer::addSpawnButton(string animName, Field *field,int x, int y, int w, int h){
@@ -105,7 +106,7 @@ void Drawer::updateGui(int x, int y){
     sf::Vector2f pos((float)x,(float)y);
     for(int b_id=0;b_id<buttons.size(); b_id++){
         if(buttons[b_id].checkPress(pos)){
-            for(int i=0; i<buttons.size(); i++) {if(i!=b_id){buttons[b_id].seleted=false;}}
+            for(int i=0; i<buttons.size(); i++) {if(i!=b_id) buttons[i].seleted=false;}
             stepUpdateButtons = true;
             buttons[b_id].press();
         }
@@ -116,6 +117,7 @@ Button::Button(sf::Sprite sp, sf::Texture tx, Field *field, string spawnName): s
 
 void Button::press(){
     seleted = !seleted;
+    cout<<spawnArg<<'\n';
 }
 void Button::useOnMap(int x, int y){
     if(selfType == SPAWNBUTTON){
@@ -126,5 +128,9 @@ bool Button::checkPress(sf::Vector2f pos){
     sf::Vector2f selfPos = selfSprite.getPosition();
     sf::Vector2u selfSize = selfTexture.getSize();
     sf::Vector2f scaleModifier = selfSprite.getScale();
-    return (pos.x >= selfPos.x and pos.x <= selfPos.x + selfSize.x*scaleModifier.x) and (pos.y > selfPos.y and pos.y < selfPos.y + selfSize.y*scaleModifier.y);
+    scaleModifier.x /= 4; 
+    // cout<<selfPos.x<<' '<<selfPos.y<<"|";
+    // cout<<pos.x<<" "<<pos.y<<"|";
+    // cout<<selfPos.x + selfSize.x*scaleModifier.x << " " << selfPos.y + selfSize.y*scaleModifier.y<<"\n";
+    return (pos.x >= selfPos.x and pos.x <= selfPos.x + selfSize.x*scaleModifier.x) and (pos.y >= selfPos.y and pos.y <= selfPos.y + selfSize.y*scaleModifier.y);
 }
