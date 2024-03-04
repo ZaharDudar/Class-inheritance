@@ -27,4 +27,5 @@ public:
     float getMainTime();
     void update();
     std::vector<Animals*> getAnimalArr();
+    void checkForBounds(); //sets all animals' coords to inside of bouds
 };

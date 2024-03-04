@@ -27,10 +27,12 @@ protected:
     int legs;
     std::vector<string> attractors;
     std::vector<string> repulsors;
+    std::vector<string> food; // eats this sht, not eaten by it
     float moveSpeed;
     string typeName;
     std::vector<string> food;
 public:
+    bool forcedReturn; // shit for collision
     sf::Vector2f position; //------change back to protected
     int animFrame=0;
     int64_t lastAnimUpdate;
@@ -43,19 +45,18 @@ public:
     void setCoords(float, float);
     void move(sf::Vector2f, float);
     virtual void say() = 0;
-   
+    //deletes every food in 2.5 radius of collisionRadius
+    void foodCheck(std::vector<Animals*>*);
     float getCollisionRadius();
+    bool alive;
+    Animals();
     ~Animals(){};
 };
 
 class Herbivores : public Animals {
-public:
-    
 };
 
 class Predators : public Animals {
-    public:
-        
 };
 
 
