@@ -29,6 +29,7 @@ protected:
     std::vector<string> repulsors;
     float moveSpeed;
     string typeName;
+    std::vector<string> food;
 public:
     sf::Vector2f position; //------change back to protected
     int animFrame=0;
@@ -42,23 +43,19 @@ public:
     void setCoords(float, float);
     void move(sf::Vector2f, float);
     virtual void say() = 0;
-    virtual bool canEat(Food *food) = 0;
+   
     float getCollisionRadius();
     ~Animals(){};
 };
 
 class Herbivores : public Animals {
 public:
-    bool canEat(Food *food){
-        return !food->isMeat();
-    }
+    
 };
 
 class Predators : public Animals {
     public:
-        bool canEat(Food *food){
-            return food->isMeat(); 
-        }
+        
 };
 
 

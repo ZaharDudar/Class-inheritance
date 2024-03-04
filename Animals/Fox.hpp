@@ -4,4 +4,5 @@ class Fox : public Predators{
     public:
         void say();
         Fox();
+        
 };
