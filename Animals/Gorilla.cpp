@@ -15,5 +15,5 @@ Gorilla::Gorilla(){
 
     this->viewRarius = 200;
     this->collisionRadius = 16*3;
-    this->moveSpeed=8;
+    this->moveSpeed=8*3;
 }

@@ -31,10 +31,10 @@ void Field::update(){
     checkForBounds();
     this->previousFrameTime = this->currentFrameTime;
     this->currentFrameTime = getMainTime();
-    for (int i = 0; i < animalArr.size(); i++){
-        cout << animalArr[i]->getTypeName() << " ";
-    }
-    cout << endl;
+    // for (int i = 0; i < animalArr.size(); i++){-----------------animalArr cout
+    //     cout << animalArr[i]->getTypeName() << " ";
+    // }
+    // cout << endl;
 }
 
 std::vector<Animals*> Field::getAnimalArr(){
