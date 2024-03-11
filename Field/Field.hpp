@@ -38,7 +38,8 @@ template<typename T>
 void Field::spawnAnimal(sf::Vector2f pos){
     Animals *animal;
     int arrIndex = -1;
-    if(typeid(T) == typeid(Animals)){
+    T tmp;
+    if(dynamic_cast<Animals*>(&tmp)){
         for (int i = 0; i < animalArr.size(); i++){
             if ((animalArr[i]->alive == false) && (typeid(*animalArr[i]) == typeid(T))){
                 arrIndex = i;

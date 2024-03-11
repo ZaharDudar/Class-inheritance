@@ -173,7 +173,7 @@ void Button::useOnMap(int x, int y){
         else if (spawnArg == "Sheep")
             (*field).spawnAnimal<Sheep>(sf::Vector2f(x,y));
         else 
-            throw std::invalid_argument( "recieved invalid type argument" );
+            throw std::invalid_argument( "recieved invalid type argument to attach funck" );
     }
 }
 bool Button::checkPress(sf::Vector2f pos){
