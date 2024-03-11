@@ -30,6 +30,10 @@ float Animals::getSqrDistanceTo(Animals* animal){
     sf::Vector2f distance = this->position - animal->position;
     return distance.x*distance.x + distance.y*distance.y;
 }
+
+string Animals::getTypeName(){
+    return this->typeName;
+}
 //possible attractors and repulsors inputs: Boar, Cow, Fox, Goose, Gorilla, Pig, Sheep, Wolf
 sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulsorPriority = true){
     sf::Vector2f entityDir = sf::Vector2f(0.0f, 0.0f);
@@ -41,7 +45,7 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
             break;
         }
         for (int i = 0; i < animalArr->size(); i++){
-            if ((*animalArr)[i] == this){
+            if (((*animalArr)[i] == this || ((*animalArr)[i]->alive == false))){
                 continue;
             }
             if (this->getSqrDistanceTo((*animalArr)[i]) < this->viewRarius*this->viewRarius){
@@ -62,7 +66,7 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
             break;
         }
         for (int i = 0; i < animalArr->size(); i++){
-            if ((*animalArr)[i] == this){
+            if ((*animalArr)[i] == this || ((*animalArr)[i]->alive == false)){
                 continue;
             }
             if (this->getSqrDistanceTo((*animalArr)[i]) < this->viewRarius*this->viewRarius){
@@ -97,10 +101,11 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
         }
         float abs = sqrt(diff.x*diff.x + diff.y*diff.y);
         // std::cout<<diff.x/abs<<" "<<diff.y/abs<<"\n";
-        if (forcedReturn){
-            this->forcedReturn = false;;
+        if ((forcedReturn) && (closestRep==NULL)){
+            this->forcedReturn = false;
             return -diff/abs;
         }
+        this->forcedReturn = false;
         return diff/abs;
     }else{
         if(closestAttr!=NULL){
@@ -115,19 +120,25 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
         }           
         float abs = sqrt(diff.x*diff.x + diff.y*diff.y);
         // std::cout<<diff.x/abs<<" "<<diff.y/abs<<"\n";
-        if (forcedReturn){
+        if ((forcedReturn) && (closestAttr!=NULL)){
             this->forcedReturn = false;
             return -diff/abs;
         }
+        this->forcedReturn = false;
         return diff/abs;
     }
 }
 void Animals::foodCheck(std::vector<Animals*>* animalArr){
     for (int i = 0; i < animalArr->size(); i++){
-        if (this->getSqrDistanceTo((*animalArr)[i]) < 1.5 * (this->collisionRadius + (*animalArr)[i]->collisionRadius)){
+        // cout << (*animalArr)[i]->typeName << endl;
+        if ((this != (*animalArr)[i]) && 
+        (this->getSqrDistanceTo((*animalArr)[i]) < 1.5 * (this->collisionRadius + (*animalArr)[i]->collisionRadius) * 
+                                                    1.5 * (this->collisionRadius + (*animalArr)[i]->collisionRadius))){
             for (int j = 0; j < this->food.size(); j++){
                 if ((*animalArr)[i]->typeName == this->food[j]){
                     (*animalArr)[i]->alive = false;
+                    cout << this->typeName << " eaten " << (*animalArr)[i]->typeName << endl << "sqrDistance " 
+                    << this->getSqrDistanceTo((*animalArr)[i]) << endl;
                     return;
                 }
             }

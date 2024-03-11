@@ -47,6 +47,7 @@ public:
     //deletes every food in 2.5 radius of collisionRadius
     void foodCheck(std::vector<Animals*>*);
     float getCollisionRadius();
+    string getTypeName();
     bool alive;
     Animals();
     ~Animals(){};

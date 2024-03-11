@@ -16,37 +16,126 @@ Field::~Field(){
 //possible type inputs: Boar, Cow, Fox, Goose, Gorilla, Pig, Sheep, Wolf
 void Field::spawnAnimal(string animalType, sf::Vector2f pos){
     Animals *animal;
+    int arrIndex = -1;
     if (animalType == "Wolf"){ 
-        animal = new Wolf;
-        animalArr.push_back(animal);
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (animalArr[i]->getTypeName() == "Wolf")){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new Wolf;
+            animalArr.push_back(animal);
+        }
     }
     else if (animalType == "Sheep"){ 
-        animal = new Sheep;
-        animalArr.push_back(animal);
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (animalArr[i]->getTypeName() == "Sheep")){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new Sheep;
+            animalArr.push_back(animal);
+        }
     }
     else if (animalType == "Pig"){ 
-        animal = new Pig;
-        animalArr.push_back(animal);
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (animalArr[i]->getTypeName() == "Pig")){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new Pig;
+            animalArr.push_back(animal);
+        }
     }
     else if (animalType == "Gorilla"){ 
-        animal = new Gorilla;
-        animalArr.push_back(animal);
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (animalArr[i]->getTypeName() == "Gorilla")){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new Gorilla;
+            animalArr.push_back(animal);
+        }
     }
     else if (animalType == "Goose"){ 
-        animal = new Goose;
-        animalArr.push_back(animal);
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (animalArr[i]->getTypeName() == "Goose")){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new Goose;
+            animalArr.push_back(animal);
+        }
     }
     else if (animalType == "Fox"){ 
-        animal = new Fox;
-        animalArr.push_back(animal);
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (animalArr[i]->getTypeName() == "Fox")){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new Fox;
+            animalArr.push_back(animal);
+        }
     }
     else if (animalType == "Cow"){ 
-        animal = new Cow;
-        animalArr.push_back(animal);
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (animalArr[i]->getTypeName() == "Cow")){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new Cow;
+            animalArr.push_back(animal);
+        }
     }
     else if (animalType == "Boar"){ 
-        animal = new Boar;
-        animalArr.push_back(animal);
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (animalArr[i]->getTypeName() == "Boar")){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new Boar;
+            animalArr.push_back(animal);
+        }
     }
     else{
         throw std::invalid_argument( "recieved invalid type argument" );
@@ -78,6 +167,10 @@ void Field::update(){
     checkForBounds();
     this->previousFrameTime = this->currentFrameTime;
     this->currentFrameTime = getMainTime();
+    for (int i = 0; i < animalArr.size(); i++){
+        cout << animalArr[i]->getTypeName() << " ";
+    }
+    cout << endl;
 }
 
 std::vector<Animals*> Field::getAnimalArr(){
