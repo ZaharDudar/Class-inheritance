@@ -14,9 +14,9 @@ Wolf::Wolf(){
 
     this->repulsors.push_back("Boar");
     this->repulsors.push_back("Gorilla");
-    this->food.push_back("Wolf");
     this->moveSpeed=100;
     
+    this->food.push_back("Wolf");
     this->food.push_back("Sheep");
     this->food.push_back("Goose");
     this->food.push_back("Pig");
@@ -24,5 +24,5 @@ Wolf::Wolf(){
 
     this->viewRarius = 400;
     this->collisionRadius = 8*3;
-    this->moveSpeed=15;
+    this->moveSpeed=15*3;
 }

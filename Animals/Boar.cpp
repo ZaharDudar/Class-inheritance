@@ -15,5 +15,5 @@ Boar::Boar(){
 
     this->collisionRadius = 8*3;
     this->viewRarius = 600;
-    this->moveSpeed = 20;
+    this->moveSpeed = 20*3;
 }

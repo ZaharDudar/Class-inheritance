@@ -12,5 +12,5 @@ Goose::Goose(){
 
     this->collisionRadius = 8*3;
     this->viewRarius = 100;
-    this->moveSpeed=10;
+    this->moveSpeed=10*3;
 }

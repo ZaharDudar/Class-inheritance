@@ -12,5 +12,5 @@ Pig::Pig(){
     
     this->viewRarius = 150;
     this->collisionRadius = 8*3;
-    this->moveSpeed=10;
+    this->moveSpeed=10*3;
 }

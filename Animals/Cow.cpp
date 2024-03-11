@@ -12,5 +12,5 @@ Cow::Cow(){
 
     this->collisionRadius = 8*3;
     this->viewRarius = 200;
-    this->moveSpeed=10;
+    this->moveSpeed=10*3;
 }

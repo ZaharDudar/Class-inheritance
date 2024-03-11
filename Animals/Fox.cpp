@@ -22,5 +22,5 @@ Fox::Fox(){
 
     this->collisionRadius = 8*3;
     this->viewRarius = 600;
-    this->moveSpeed=15;
+    this->moveSpeed=15*3;
 }

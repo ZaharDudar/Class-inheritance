@@ -13,11 +13,17 @@ bool Animals::circleCollision(Animals* animal){
 
 void Animals::move(sf::Vector2f direction, float delta){
     sf::Vector2f newPosition = this->position + this->moveSpeed * delta * direction;
-    if(direction.x > 0) {
-        lookDirection=true;
+    if (this->prev_position == sf::Vector2f(-1.0f, -1.0f)){
+        this->prev_position = this->position; 
     }
-    else{
-        lookDirection=false;
+    sf::Vector2f delta_coords = newPosition - this->prev_position;
+    if (delta_coords.x * delta_coords.x + delta_coords.y * delta_coords.y > 0.01 * this->collisionRadius * this->collisionRadius) {
+        if (delta_coords.x > 0){
+            lookDirection=true;
+        }else{
+            lookDirection=false;            
+        }
+        this->prev_position = this->position;
     }
     setCoords(newPosition.x,newPosition.y);
 }
@@ -135,10 +141,9 @@ void Animals::foodCheck(std::vector<Animals*>* animalArr){
         (this->getSqrDistanceTo((*animalArr)[i]) < 1.5 * (this->collisionRadius + (*animalArr)[i]->collisionRadius) * 
                                                     1.5 * (this->collisionRadius + (*animalArr)[i]->collisionRadius))){
             for (int j = 0; j < this->food.size(); j++){
-                if ((*animalArr)[i]->typeName == this->food[j]){
+                if (((*animalArr)[i]->typeName == this->food[j]) && ((*animalArr)[i]->alive)){
                     (*animalArr)[i]->alive = false;
-                    cout << this->typeName << " eaten " << (*animalArr)[i]->typeName << endl << "sqrDistance " 
-                    << this->getSqrDistanceTo((*animalArr)[i]) << endl;
+                    cout << this->typeName << " eaten " << (*animalArr)[i]->typeName << endl;
                     return;
                 }
             }
@@ -149,4 +154,6 @@ void Animals::foodCheck(std::vector<Animals*>* animalArr){
 Animals::Animals(){
     this->forcedReturn = false;
     this->alive = true;
+    this->lookDirection = true;
+    this->prev_position = sf::Vector2f(-1.0f, -1.0f);
 }
