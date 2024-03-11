@@ -156,7 +156,24 @@ void Button::press(){
 }
 void Button::useOnMap(int x, int y){
     if(selfType == SPAWNBUTTON){
-        (*field).spawnAnimal(spawnArg, sf::Vector2f(x,y));
+        if (spawnArg == "Wolf")
+            (*field).spawnAnimal<Wolf>(sf::Vector2f(x,y));
+        else if (spawnArg == "Boar")
+            (*field).spawnAnimal<Boar>(sf::Vector2f(x,y));
+        else if (spawnArg == "Fox")
+            (*field).spawnAnimal<Fox>(sf::Vector2f(x,y));
+        else if (spawnArg == "Goose")
+            (*field).spawnAnimal<Goose>(sf::Vector2f(x,y));
+        else if (spawnArg == "Pig")
+            (*field).spawnAnimal<Pig>(sf::Vector2f(x,y));
+        else if (spawnArg == "Cow")
+            (*field).spawnAnimal<Cow>(sf::Vector2f(x,y));
+        else if (spawnArg == "Gorilla")
+            (*field).spawnAnimal<Gorilla>(sf::Vector2f(x,y));
+        else if (spawnArg == "Sheep")
+            (*field).spawnAnimal<Sheep>(sf::Vector2f(x,y));
+        else 
+            throw std::invalid_argument( "recieved invalid type argument" );
     }
 }
 bool Button::checkPress(sf::Vector2f pos){

@@ -10,6 +10,7 @@
 #include "../Animals/Fox.hpp"
 #include "../Animals/Cow.hpp"
 #include "../Animals/Boar.hpp"
+#include <random>
 
 class Field
 {
@@ -23,10 +24,47 @@ public:
     int fieldWidth;
     Field();
     ~Field();
+    template<typename T>
     void spawnAnimal(string);
-    void spawnAnimal(string, sf::Vector2f);
+    template<typename T>
+    void spawnAnimal(sf::Vector2f);
     float getMainTime();
     void update();
     std::vector<Animals*> getAnimalArr();
     void checkForBounds(); //sets all animals' coords to inside of bouds
 };
+//possible type inputs: Boar, Cow, Fox, Goose, Gorilla, Pig, Sheep, Wolf
+template<typename T>
+void Field::spawnAnimal(sf::Vector2f pos){
+    Animals *animal;
+    int arrIndex = -1;
+    if(typeid(T) == typeid(Animals)){
+        for (int i = 0; i < animalArr.size(); i++){
+            if ((animalArr[i]->alive == false) && (typeid(*animalArr[i]) == typeid(T))){
+                arrIndex = i;
+                break;
+            }
+        }
+        if (arrIndex != -1){
+            animalArr[arrIndex]->alive = true;
+            animal = animalArr[arrIndex];
+        }else{
+            animal = new T;
+            animalArr.push_back(animal);
+        }
+    }
+    else{
+        throw std::invalid_argument( "recieved invalid type argument" );
+    }
+    animal->setCoords(pos.x, pos.y);
+}
+template<typename T>
+void Field::spawnAnimal(string animalType){
+    std::random_device rd;   // non-deterministic generator
+    std::mt19937 gen(rd());  // to seed mersenne twister.
+    std::uniform_int_distribution<> distX(10, this->fieldWidth - 10);
+    int xCoord = distX(gen);
+    std::uniform_int_distribution<> distY(10, this->fieldHeight - 10);
+    int yCoord = distY(gen);
+    this->spawnAnimal<T>(animalType, sf::Vector2f(xCoord, yCoord));
+}
