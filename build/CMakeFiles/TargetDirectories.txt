@@ -1,0 +1,3 @@
+/home/zahar/IKT/Class-inheritance/build/CMakeFiles/zoo.dir
+/home/zahar/IKT/Class-inheritance/build/CMakeFiles/edit_cache.dir
+/home/zahar/IKT/Class-inheritance/build/CMakeFiles/rebuild_cache.dir
