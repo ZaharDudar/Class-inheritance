@@ -39,6 +39,8 @@ private:
     std::map<std::string,std::vector<sf::Sprite>> entitySprites;
     std::map<std::string,std::vector<sf::Sprite>> entitySpritesReverse;
     int animationFPS = 5;
+    int deathAnimationDuration = 30000;//mcs but not correctly counting
+    int64_t globalLastFrameTime = 0;
     float scalingFactor = 1;
     bool stepUpdateButtons = false;
     void loadTextures();

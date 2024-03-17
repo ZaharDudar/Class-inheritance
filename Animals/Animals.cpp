@@ -143,6 +143,7 @@ void Animals::foodCheck(std::vector<Animals*>* animalArr){
             for (int j = 0; j < this->food.size(); j++){
                 if (((*animalArr)[i]->typeName == this->food[j]) && ((*animalArr)[i]->alive)){
                     (*animalArr)[i]->alive = false;
+                    (*animalArr)[i]->deathAnimationPercent = 100;
                     cout << this->typeName << " eaten " << (*animalArr)[i]->typeName << endl;
                     return;
                 }
@@ -150,6 +151,8 @@ void Animals::foodCheck(std::vector<Animals*>* animalArr){
         }
     }
 }
+
+
 
 Animals::Animals(){
     this->forcedReturn = false;
