@@ -70,7 +70,13 @@ void Drawer::draw(vector<Animals*> entities){
                 }
             }
             if(ev.mouseButton.button == sf::Mouse::Right){
-                //killing
+                for(int ent_id=0; ent_id < entities.size(); ent_id++ ){
+                    auto dir = (*entities[ent_id]).position - sf::Vector2f(ev.mouseButton.x,ev.mouseButton.y);
+                    if(sqrt(dir.x*dir.x + dir.y*dir.y) < (*entities[ent_id]).getCollisionRadius() and (*entities[ent_id]).alive){
+                        (*entities[ent_id]).alive = false;
+                        (*entities[ent_id]).deathAnimationPercent = 100;
+                    }
+                }
             }
         }
     }  
