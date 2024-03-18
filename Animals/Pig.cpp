@@ -9,6 +9,9 @@ Pig::Pig(){
     this->repulsors.push_back("Fox");
     this->repulsors.push_back("Wolf");
     this->attractors.push_back("Pig");
+    this->attractors.push_back("Bush");
+
+    this->food.push_back("Bush");
     
     this->viewRarius = 150;
     this->collisionRadius = 8*3;

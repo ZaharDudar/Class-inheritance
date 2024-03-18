@@ -9,7 +9,10 @@ Cow::Cow(){
     this->repulsors.push_back("Fox");
     this->repulsors.push_back("Wolf");
     this->attractors.push_back("Cow");
+    this->attractors.push_back("Bush");
 
+    this->food.push_back("Bush");
+    
     this->collisionRadius = 8*3;
     this->viewRarius = 200;
     this->moveSpeed=10*3;
