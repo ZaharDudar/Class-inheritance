@@ -49,6 +49,7 @@ void Drawer::loadTextures(){
     }
 }
 void Drawer::draw(vector<Animals*> entities){
+    auto currentTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     if(!this->window->isOpen()) {throw std::runtime_error("yr conputer has virus");}
     sf::Event ev;
     if(stepUpdateButtons){stepUpdateButtons=false;}
@@ -58,7 +59,7 @@ void Drawer::draw(vector<Animals*> entities){
             window->close();
         }
         if(ev.type == sf::Event::MouseButtonPressed){
-            if(ev.mouseButton.button == sf::Mouse::Left)
+            if(ev.mouseButton.button == sf::Mouse::Left){
                 updateGui(ev.mouseButton.x,ev.mouseButton.y);
                 if(!stepUpdateButtons){
                     for(int b_id=0;b_id<buttons.size(); b_id++){
@@ -67,28 +68,50 @@ void Drawer::draw(vector<Animals*> entities){
                         }
                     }
                 }
+            }
+            if(ev.mouseButton.button == sf::Mouse::Right){
+                for(int ent_id=0; ent_id < entities.size(); ent_id++ ){
+                    auto dir = (*entities[ent_id]).position - sf::Vector2f(ev.mouseButton.x,ev.mouseButton.y);
+                    if(sqrt(dir.x*dir.x + dir.y*dir.y) < (*entities[ent_id]).getCollisionRadius() and (*entities[ent_id]).alive){
+                        (*entities[ent_id]).alive = false;
+                        (*entities[ent_id]).deathAnimationPercent = 100;
+                    }
+                }
+            }
         }
     }  
-    auto currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     window->clear();
     window->draw(background);
     for(int ent_id=0; ent_id < entities.size(); ent_id++){
         
-        if(currentTime - (*entities[ent_id]).lastAnimUpdate > 1000/animationFPS){
+        if(currentTime - (*entities[ent_id]).lastAnimUpdate > 1000000/animationFPS){
             (*entities[ent_id]).animFrame+=1;
             if((*entities[ent_id]).animFrame>=4) 
                 (*entities[ent_id]).animFrame = 0;
-            (*entities[ent_id]).lastAnimUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+            (*entities[ent_id]).lastAnimUpdate = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         }
         entitySprites[string{"./PNG's/"} + (*entities[ent_id]).sprite][(*entities[ent_id]).animFrame].setPosition((*entities[ent_id]).position.x,(*entities[ent_id]).position.y );
         entitySpritesReverse[string{"./PNG's/"} + (*entities[ent_id]).sprite][(*entities[ent_id]).animFrame].setPosition((*entities[ent_id]).position.x,(*entities[ent_id]).position.y );
         
+        sf::Sprite sprite;
+        if((*entities[ent_id]).lookDirection){
+            sprite = entitySprites[string{"./PNG's/"} + (*entities[ent_id]).sprite][(*entities[ent_id]).animFrame]; 
+        }
+        else{
+            sprite = entitySpritesReverse[string{"./PNG's/"} + (*entities[ent_id]).sprite][(*entities[ent_id]).animFrame];
+        }
+
         if((*entities[ent_id]).alive){
-            if((*entities[ent_id]).lookDirection){
-                window->draw(entitySprites[string{"./PNG's/"} + (*entities[ent_id]).sprite][(*entities[ent_id]).animFrame]);
-            }
-            else{
-                window->draw(entitySpritesReverse[string{"./PNG's/"} + (*entities[ent_id]).sprite][(*entities[ent_id]).animFrame]);
+            window->draw(sprite);
+        }
+        else{
+            if((*entities[ent_id]).deathAnimationPercent>0){
+                currentTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+                sprite.setColor(sf::Color((int)(255*(float)(*entities[ent_id]).deathAnimationPercent/100.0f),0,0));
+                auto newScale = (-(float)exp(-pow((*entities[ent_id]).deathAnimationPercent,1.8)/100)+1) * sprite.getScale();
+                sprite.setScale(newScale.x,newScale.y);
+                (*entities[ent_id]).deathAnimationPercent -= (float)(currentTime - globalLastFrameTime)/deathAnimationDuration * 100.0f;
+                window->draw(sprite);
             }
         }
     }
@@ -106,6 +129,7 @@ void Drawer::draw(vector<Animals*> entities){
         }
     }
     window->display();
+    globalLastFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
 void Drawer::addSpawnButton(string animName, Field *field,int x, int y, int w, int h){
@@ -132,7 +156,7 @@ void Drawer::addSpawnButton(string animName, Field *field,int x, int y, int w, i
     sf::Sprite ent;
     ent.setTexture(textures[string{"./PNG's/"} + animName + string(".png")][0]);
     ent.setTextureRect(sf::IntRect(0,0,shape.x/4,shape.y));
-    ent.setScale(4*w/shape.x,h/shape.y);
+    ent.setScale(4*(float)w/shape.x,(float)h/shape.y);
     ent.setPosition(x,y);
     buttons.push_back(Button(ent, textures[string{"./PNG's/"} + animName + string(".png")][0], field, animName));
 }

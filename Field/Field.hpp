@@ -25,7 +25,7 @@ public:
     Field();
     ~Field();
     template<typename T>
-    void spawnAnimal(string);
+    void spawnAnimal();
     template<typename T>
     void spawnAnimal(sf::Vector2f);
     float getMainTime();
@@ -60,12 +60,12 @@ void Field::spawnAnimal(sf::Vector2f pos){
     animal->setCoords(pos.x, pos.y);
 }
 template<typename T>
-void Field::spawnAnimal(string animalType){
+void Field::spawnAnimal(){
     std::random_device rd;   // non-deterministic generator
     std::mt19937 gen(rd());  // to seed mersenne twister.
     std::uniform_int_distribution<> distX(10, this->fieldWidth - 10);
     int xCoord = distX(gen);
     std::uniform_int_distribution<> distY(10, this->fieldHeight - 10);
     int yCoord = distY(gen);
-    this->spawnAnimal<T>(animalType, sf::Vector2f(xCoord, yCoord));
+    this->spawnAnimal<T>(sf::Vector2f(xCoord, yCoord));
 }

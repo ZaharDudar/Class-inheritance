@@ -50,6 +50,7 @@ public:
     float getCollisionRadius();
     string getTypeName();
     bool alive;
+    float deathAnimationPercent; //factor of animation death where 100 - idle, 0 - dead
     Animals();
     ~Animals(){};
 };
