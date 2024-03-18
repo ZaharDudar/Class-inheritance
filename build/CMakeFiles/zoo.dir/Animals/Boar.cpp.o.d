@@ -181,5 +181,5 @@ CMakeFiles/zoo.dir/Animals/Boar.cpp.o: \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /usr/include/SFML/System/Vector2.hpp \
- /usr/include/SFML/System/Vector2.inl
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Vector2.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Vector2.inl

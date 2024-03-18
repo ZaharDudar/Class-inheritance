@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML
+CXX_INCLUDES = -isystem /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include
 
 CXX_FLAGS = 
 

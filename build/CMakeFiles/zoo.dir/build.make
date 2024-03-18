@@ -268,7 +268,9 @@ zoo: CMakeFiles/zoo.dir/Animals/Gorilla.cpp.o
 zoo: CMakeFiles/zoo.dir/Animals/Sheep.cpp.o
 zoo: CMakeFiles/zoo.dir/main.cpp.o
 zoo: CMakeFiles/zoo.dir/build.make
+zoo: ../SFML-2.6.1/lib/libsfml-graphics-d.so.2.6.1
 zoo: ../SFML-2.6.1/lib/libsfml-window-d.so.2.6.1
+zoo: ../SFML-2.6.1/lib/libsfml-system-d.so.2.6.1
 zoo: CMakeFiles/zoo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zahar/IKT/Class-inheritance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable zoo"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/zoo.dir/link.txt --verbose=$(VERBOSE)

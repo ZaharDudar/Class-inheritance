@@ -175,23 +175,29 @@ CMakeFiles/zoo.dir/main.cpp.o: /home/zahar/IKT/Class-inheritance/main.cpp \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /usr/include/SFML/System/Vector2.hpp \
- /usr/include/SFML/System/Vector2.inl \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Vector2.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Vector2.inl \
  /home/zahar/IKT/Class-inheritance/./Animals/Wolf.hpp \
  /home/zahar/IKT/Class-inheritance/./Animals/Fox.hpp \
  /home/zahar/IKT/Class-inheritance/./Animals/Cow.hpp \
  /home/zahar/IKT/Class-inheritance/./Field/Field.hpp \
- /usr/include/SFML/Graphics.hpp /usr/include/SFML/Window.hpp \
- /usr/include/SFML/System.hpp /usr/include/SFML/Config.hpp \
- /usr/include/SFML/System/Clock.hpp /usr/include/SFML/System/Export.hpp \
- /usr/include/SFML/System/Time.hpp /usr/include/SFML/System/Err.hpp \
- /usr/include/SFML/System/FileInputStream.hpp \
- /usr/include/SFML/System/InputStream.hpp \
- /usr/include/SFML/System/NonCopyable.hpp \
- /usr/include/SFML/System/Lock.hpp \
- /usr/include/SFML/System/MemoryInputStream.hpp \
- /usr/include/SFML/System/Mutex.hpp /usr/include/SFML/System/Sleep.hpp \
- /usr/include/SFML/System/String.hpp /usr/include/SFML/System/Utf.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Config.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Clock.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Export.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Time.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Err.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/FileInputStream.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/InputStream.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/NonCopyable.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Lock.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/MemoryInputStream.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Mutex.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Sleep.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/String.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Utf.hpp \
  /usr/include/c++/11/algorithm /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/bits/stl_algo.h \
@@ -219,56 +225,69 @@ CMakeFiles/zoo.dir/main.cpp.o: /home/zahar/IKT/Class-inheritance/main.cpp \
  /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
  /usr/include/c++/11/bits/locale_conv.h \
- /usr/include/c++/11/bits/unique_ptr.h /usr/include/SFML/System/Utf.inl \
+ /usr/include/c++/11/bits/unique_ptr.h \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Utf.inl \
  /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
- /usr/include/SFML/System/String.inl /usr/include/SFML/System/Thread.hpp \
- /usr/include/SFML/System/Thread.inl \
- /usr/include/SFML/System/ThreadLocal.hpp \
- /usr/include/SFML/System/ThreadLocalPtr.hpp \
- /usr/include/SFML/System/ThreadLocalPtr.inl \
- /usr/include/SFML/System/Vector3.hpp \
- /usr/include/SFML/System/Vector3.inl \
- /usr/include/SFML/Window/Clipboard.hpp \
- /usr/include/SFML/Window/Export.hpp /usr/include/SFML/Window/Context.hpp \
- /usr/include/SFML/Window/GlResource.hpp \
- /usr/include/SFML/Window/ContextSettings.hpp \
- /usr/include/SFML/Window/Cursor.hpp /usr/include/SFML/Window/Event.hpp \
- /usr/include/SFML/Window/Joystick.hpp \
- /usr/include/SFML/Window/Keyboard.hpp /usr/include/SFML/Window/Mouse.hpp \
- /usr/include/SFML/Window/Sensor.hpp /usr/include/SFML/Window/Touch.hpp \
- /usr/include/SFML/Window/VideoMode.hpp \
- /usr/include/SFML/Window/Window.hpp \
- /usr/include/SFML/Window/WindowHandle.hpp \
- /usr/include/SFML/Window/WindowStyle.hpp \
- /usr/include/SFML/Graphics/BlendMode.hpp \
- /usr/include/SFML/Graphics/Export.hpp \
- /usr/include/SFML/Graphics/CircleShape.hpp \
- /usr/include/SFML/Graphics/Shape.hpp \
- /usr/include/SFML/Graphics/Drawable.hpp \
- /usr/include/SFML/Graphics/RenderStates.hpp \
- /usr/include/SFML/Graphics/Transform.hpp \
- /usr/include/SFML/Graphics/Rect.hpp /usr/include/SFML/Graphics/Rect.inl \
- /usr/include/SFML/Graphics/Transformable.hpp \
- /usr/include/SFML/Graphics/VertexArray.hpp \
- /usr/include/SFML/Graphics/Vertex.hpp \
- /usr/include/SFML/Graphics/Color.hpp \
- /usr/include/SFML/Graphics/PrimitiveType.hpp \
- /usr/include/SFML/Graphics/ConvexShape.hpp \
- /usr/include/SFML/Graphics/Font.hpp /usr/include/SFML/Graphics/Glyph.hpp \
- /usr/include/SFML/Graphics/Texture.hpp \
- /usr/include/SFML/Graphics/Image.hpp /usr/include/c++/11/map \
- /usr/include/c++/11/bits/stl_tree.h /usr/include/c++/11/bits/stl_map.h \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/String.inl \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Thread.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Thread.inl \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/ThreadLocal.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/ThreadLocalPtr.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/ThreadLocalPtr.inl \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Vector3.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/System/Vector3.inl \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Clipboard.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Export.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Context.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/GlResource.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/ContextSettings.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Cursor.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Event.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Joystick.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Keyboard.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Mouse.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Sensor.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Touch.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/VideoMode.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Window.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/WindowBase.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/Vulkan.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/WindowHandle.hpp \
+ /usr/include/c++/11/cstddef \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Window/WindowStyle.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/BlendMode.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Export.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/CircleShape.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Shape.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Drawable.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/RenderStates.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Transform.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Rect.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Rect.inl \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Transformable.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/VertexArray.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Vertex.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Color.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/PrimitiveType.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/ConvexShape.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Font.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Glyph.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Texture.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Image.hpp \
+ /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /usr/include/SFML/Graphics/RectangleShape.hpp \
- /usr/include/SFML/Graphics/RenderTarget.hpp \
- /usr/include/SFML/Graphics/View.hpp \
- /usr/include/SFML/Graphics/RenderTexture.hpp \
- /usr/include/SFML/Graphics/RenderWindow.hpp \
- /usr/include/SFML/Graphics/Shader.hpp \
- /usr/include/SFML/Graphics/Glsl.hpp /usr/include/SFML/Graphics/Glsl.inl \
- /usr/include/SFML/Graphics/Sprite.hpp \
- /usr/include/SFML/Graphics/Text.hpp \
- /usr/include/SFML/Graphics/VertexBuffer.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/RectangleShape.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/RenderTarget.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/View.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/RenderTexture.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/RenderWindow.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Shader.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Glsl.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Glsl.inl \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Sprite.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/Text.hpp \
+ /home/zahar/IKT/Class-inheritance/SFML-2.6.1/include/SFML/Graphics/VertexBuffer.hpp \
  /home/zahar/IKT/Class-inheritance/./Field/../Animals/Sheep.hpp \
  /home/zahar/IKT/Class-inheritance/./Field/../Animals/Pig.hpp \
  /home/zahar/IKT/Class-inheritance/./Field/../Animals/Gorilla.hpp \
