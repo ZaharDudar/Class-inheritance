@@ -58,6 +58,8 @@ void Field::spawnAnimal(sf::Vector2f pos){
         throw std::invalid_argument( "recieved invalid type argument" );
     }
     animal->setCoords(pos.x, pos.y);
+    animal->food_clock.restart();
+    animal->reproduct_clock.restart();
 }
 template<typename T>
 void Field::spawnAnimal(){

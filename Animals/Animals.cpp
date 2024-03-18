@@ -134,22 +134,38 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
         return diff/abs;
     }
 }
-void Animals::foodCheck(std::vector<Animals*>* animalArr){
+//also checks for reproduction
+bool Animals::foodCheck(std::vector<Animals*>* animalArr){
+    bool repr_check = false;
     for (int i = 0; i < animalArr->size(); i++){
         // cout << (*animalArr)[i]->typeName << endl;
         if ((this != (*animalArr)[i]) && 
         (this->getSqrDistanceTo((*animalArr)[i]) < 1.5 * (this->collisionRadius + (*animalArr)[i]->collisionRadius) * 
                                                     1.5 * (this->collisionRadius + (*animalArr)[i]->collisionRadius))){
+            // cout << this->reproduct_clock.getElapsedTime().asSeconds() << endl;
+            if (((*animalArr)[i]->typeName == this->typeName) && ((*animalArr)[i]->alive) && 
+                (this->reproduct_clock.getElapsedTime().asSeconds() > this->reproduction_max) && 
+                ((*animalArr)[i]->reproduct_clock.getElapsedTime().asSeconds() > (*animalArr)[i]->reproduction_max)){
+                    repr_check = true;
+                    cout << "repr_check set to true" << endl;
+                    this->reproduct_clock.restart();
+                    (*animalArr)[i]->reproduct_clock.restart();
+            }
             for (int j = 0; j < this->food.size(); j++){
                 if (((*animalArr)[i]->typeName == this->food[j]) && ((*animalArr)[i]->alive)){
                     (*animalArr)[i]->alive = false;
                     (*animalArr)[i]->deathAnimationPercent = 100;
                     cout << this->typeName << " eaten " << (*animalArr)[i]->typeName << endl;
-                    return;
+                    this->food_clock.restart();
                 }
             }
         }
     }
+    if (this->food_clock.getElapsedTime().asSeconds() > this->food_max){
+        this->alive = false;
+        this->deathAnimationPercent = 100;
+    }
+    return repr_check;
 }
 
 
@@ -159,4 +175,7 @@ Animals::Animals(){
     this->alive = true;
     this->lookDirection = true;
     this->prev_position = sf::Vector2f(-1.0f, -1.0f);
+    this->needs_food = true;
+    this->food_max = 10.0f;
+    this->reproduction_max = 3.0f;
 }
