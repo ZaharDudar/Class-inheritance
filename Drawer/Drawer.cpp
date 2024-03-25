@@ -8,7 +8,7 @@
 # include "../PerlinNoise.hpp"
 
 Drawer::Drawer(int W,int H){
-    backgroundTexture.loadFromFile("./Backgroungs/field.png");
+    backgroundTexture.loadFromFile("./Backgrounds/field.png");
     background.setTexture(backgroundTexture);
     sf::Vector2u shape = backgroundTexture.getSize();
     background.setScale(((float)W)/shape.x, ((float)H)/shape.y);
@@ -19,7 +19,7 @@ Drawer::Drawer(int W,int H){
     loadTextures();
 }
 Drawer::Drawer(int W,int H, float scF){
-    backgroundTexture.loadFromFile("./Backgroungs/field.png");
+    backgroundTexture.loadFromFile("./Backgrounds/field.png");
     background.setTexture(backgroundTexture);
     sf::Vector2u shape = backgroundTexture.getSize();
     background.setScale(((float)W)/shape.x, ((float)H)/shape.y);
@@ -32,7 +32,7 @@ Drawer::Drawer(int W,int H, float scF){
 }
 
 void Drawer::mapGenerator(float frequency, double threashold, int octaves){
-    mapEnvTexture.loadFromFile("./Backgroungs/forest.png");
+    mapEnvTexture.loadFromFile("./Backgrounds/forest.png");
     int W = window->getSize().x;
     int H = window->getSize().y;
     std::vector<sf::IntRect> trees;
@@ -85,13 +85,26 @@ void Drawer::loadTextures(){
             ent.setTexture(this->textures[file.path()].back());
             ent.setTextureRect(sf::IntRect(frame,0,shape.x/4,shape.y));
             ent.setOrigin(shape.x/8,shape.y/2);
-
+            
+            ent.setScale(-scalingFactor,scalingFactor);
             this->entitySprites[file.path()].push_back(ent);
 
             ent.setScale(-scalingFactor,scalingFactor);
             this->entitySpritesReverse[file.path()].push_back(ent);
         }
     }
+    pistolTexture.loadFromFile("./Backgrounds/Pistol.png");
+    sf::Vector2u shape = pistolTexture.getSize();
+    for(int pframe=0; pframe<5; pframe++){
+        sf::Sprite fr;
+        fr.setTexture(pistolTexture);
+        fr.setTextureRect(sf::IntRect(pframe*shape.x/5,0,shape.x/4,shape.y));
+        fr.setOrigin(shape.x/5,shape.y);
+        fr.setScale(pistolScale, pistolScale);
+        fr.setPosition(window->getSize().x, window->getSize().y);
+        pistolFrames.push_back(fr);
+    }
+
 }
 void Drawer::draw(vector<Animals*> entities){
     auto currentTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -126,7 +139,6 @@ void Drawer::draw(vector<Animals*> entities){
         }
     }  
     window->clear(sf::Color(10, 153, 5));
-    // window->draw(background);
     for(int item_id=0;item_id < mapEnv.size(); item_id++){
         window->draw(mapEnv[item_id]);   
     }
@@ -179,6 +191,11 @@ void Drawer::draw(vector<Animals*> entities){
             window->draw(highlight);
         }
     }
+
+    if(pistolEquipted){
+        window->draw(pistolFrames[0]);
+    }
+
     window->display();
     globalLastFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }

@@ -10,7 +10,8 @@ class Button{
     protected:
         enum buttonType{
             NONE,
-            SPAWNBUTTON
+            SPAWNBUTTON,
+            KILLBUTTON
         };
         std::string test;
         sf::Texture selfTexture;
@@ -61,6 +62,11 @@ private:
     int getNumberFromNoiseGrass(double noise_val){
         return 50 * exp(-60*pow(abs(noise_val-0.65),2));
     }
+
+    float pistolScale = 0.4f;
+    sf::Texture pistolTexture;
+    std::vector<sf::Sprite> pistolFrames;
+    bool pistolEquipted = true;
 
     int outlineBg = 5;
     sf::RectangleShape buttonBackround;
