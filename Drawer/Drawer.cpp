@@ -135,6 +135,7 @@ void Drawer::draw(vector<Animals*> entities){
                         (*entities[ent_id]).deathAnimationPercent = 100;
                     }
                 }
+                pistolAnimFrame = 0; //Запуск анимации пистолета
             }
         }
     }  
@@ -193,7 +194,27 @@ void Drawer::draw(vector<Animals*> entities){
     }
 
     if(pistolEquipted){
-        window->draw(pistolFrames[0]);
+        sf::Sprite currentPistolFrame;
+        if(pistolAnimFrame == -1){
+            currentPistolFrame = pistolFrames[0];
+        }
+        else{
+            currentPistolFrame = pistolFrames[pistolAnimFrame];
+        }
+        auto curPos = currentPistolFrame.getPosition();
+        auto mousePos = sf::Mouse::getPosition(*window);
+        int W = window->getSize().x;
+        int H = window->getSize().y;
+        currentPistolFrame.setPosition(curPos.x + (float)(mousePos.x - W/2)/W * pistolMoveFactor, curPos.y + (float)(mousePos.y-H/2)/H * pistolMoveFactor);
+
+        window->draw(currentPistolFrame);
+        if(currentTime - pistolAnimLastFrameTime > 1000000/pistolAnimFPS and pistolAnimFrame!=-1){
+            pistolAnimFrame+=1;
+            if(pistolAnimFrame>4){
+                pistolAnimFrame = -1;
+            }
+            pistolAnimLastFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        }
     }
 
     window->display();

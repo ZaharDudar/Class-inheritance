@@ -67,6 +67,10 @@ private:
     sf::Texture pistolTexture;
     std::vector<sf::Sprite> pistolFrames;
     bool pistolEquipted = true;
+    int pistolAnimFrame = -1; // -1 - нет анимации, 0 -> 4 и играет анимация, а потом опять присваивается -1
+    int pistolAnimFPS = 10;
+    int64_t pistolAnimLastFrameTime;
+    float pistolMoveFactor = 50.0f;
 
     int outlineBg = 5;
     sf::RectangleShape buttonBackround;
