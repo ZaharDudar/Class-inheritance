@@ -7,6 +7,7 @@
 #include <chrono>
 #include <cmath>
 #include "SFML/System/Vector2.hpp"
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -31,7 +32,12 @@ protected:
     float moveSpeed;
     string typeName;
     sf::Vector2f prev_position;
+    bool needs_food;
+    float food_max;
+    float reproduction_max;
 public:
+    sf::Clock food_clock;
+    sf::Clock reproduct_clock;
     bool forcedReturn; // shit for collision
     sf::Vector2f position; //------change back to protected
     int animFrame=0;
@@ -46,7 +52,7 @@ public:
     void move(sf::Vector2f, float);
     virtual void say() = 0;
     //deletes every food in 2.5 radius of collisionRadius
-    void foodCheck(std::vector<Animals*>*);
+    bool foodCheck(std::vector<Animals*>*);
     float getCollisionRadius();
     string getTypeName();
     bool alive;

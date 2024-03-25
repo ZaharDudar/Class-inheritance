@@ -25,7 +25,25 @@ void Field::update(){
     for (int i = 0; i < this->animalArr.size(); i++){
         if (animalArr[i]->alive){
         animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true), this->currentFrameTime - this->previousFrameTime);
-        animalArr[i]->foodCheck(&(this->animalArr));
+        if (animalArr[i]->foodCheck(&(this->animalArr))){
+            cout << "boutta spawn " << animalArr[i]->getTypeName() << endl;
+            if (animalArr[i]->getTypeName() == "Wolf")
+            spawnAnimal<Wolf>(animalArr[i]->position + sf::Vector2f(20, 20));
+            else if (animalArr[i]->getTypeName() == "Boar")
+            spawnAnimal<Boar>(animalArr[i]->position + sf::Vector2f(20, 20));
+            else if (animalArr[i]->getTypeName() == "Fox")
+            spawnAnimal<Fox>(animalArr[i]->position + sf::Vector2f(20, 20));
+            else if (animalArr[i]->getTypeName() == "Goose")
+            spawnAnimal<Goose>(animalArr[i]->position + sf::Vector2f(20, 20));
+            else if (animalArr[i]->getTypeName() == "Pig")
+            spawnAnimal<Pig>(animalArr[i]->position + sf::Vector2f(20, 20));
+            else if (animalArr[i]->getTypeName() == "Cow")
+            spawnAnimal<Cow>(animalArr[i]->position + sf::Vector2f(20, 20));
+            else if (animalArr[i]->getTypeName() == "Gorilla")
+            spawnAnimal<Gorilla>(animalArr[i]->position + sf::Vector2f(20, 20));
+            else if (animalArr[i]->getTypeName() == "Sheep")
+            spawnAnimal<Sheep>(animalArr[i]->position + sf::Vector2f(20, 20));
+        }
         }
     }
     checkForBounds();
