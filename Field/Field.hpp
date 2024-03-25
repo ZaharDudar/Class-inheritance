@@ -10,6 +10,7 @@
 #include "../Animals/Fox.hpp"
 #include "../Animals/Cow.hpp"
 #include "../Animals/Boar.hpp"
+#include "../Animals/Bush.hpp"
 #include <random>
 
 class Field
@@ -18,6 +19,7 @@ protected:
     float previousFrameTime, currentFrameTime;
     sf::Clock mainClock;
     std::vector<Animals*> animalArr;
+    float last_bush_spawned_time, bush_spawn_cd;
 
 public:
     int fieldHeight;

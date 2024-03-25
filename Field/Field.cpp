@@ -8,6 +8,8 @@ Field::Field(){
     this->currentFrameTime = getMainTime();
     this->fieldWidth = 1200;
     this->fieldHeight = 1200;
+    this->bush_spawn_cd = 3.0f;
+    this->last_bush_spawned_time = this->getMainTime();
 }
 
 Field::~Field(){
@@ -23,7 +25,7 @@ float Field::getMainTime(){
 
 void Field::update(){
     for (int i = 0; i < this->animalArr.size(); i++){
-        if (animalArr[i]->alive){
+        if ((animalArr[i]->alive) && (animalArr[i]->getTypeName() != "Bush")){
         animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true), this->currentFrameTime - this->previousFrameTime);
         if (animalArr[i]->foodCheck(&(this->animalArr))){
             cout << "boutta spawn " << animalArr[i]->getTypeName() << endl;
@@ -45,6 +47,11 @@ void Field::update(){
             spawnAnimal<Sheep>(animalArr[i]->position + sf::Vector2f(20, 20));
         }
         }
+    }
+    if (this->getMainTime() - this->last_bush_spawned_time > this->bush_spawn_cd){
+        spawnAnimal<Bush>();
+        this->last_bush_spawned_time = this->getMainTime();
+        cout << "bush spawned\n";
     }
     checkForBounds();
     this->previousFrameTime = this->currentFrameTime;

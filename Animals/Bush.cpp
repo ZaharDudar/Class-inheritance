@@ -7,4 +7,5 @@ Bush::Bush(){
     this->typeName = "Bush";
     
     this->moveSpeed = 0;
+    this->needs_food = false;
 }
