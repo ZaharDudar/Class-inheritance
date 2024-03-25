@@ -10,6 +10,7 @@
 #include "../Animals/Fox.hpp"
 #include "../Animals/Cow.hpp"
 #include "../Animals/Boar.hpp"
+#include "../Animals/Bush.hpp"
 #include <random>
 
 class Field
@@ -18,6 +19,8 @@ protected:
     float previousFrameTime, currentFrameTime;
     sf::Clock mainClock;
     std::vector<Animals*> animalArr;
+    std::vector<Bush*> bush_arr;
+    float last_bush_spawn_time, bush_spawn_cd;
 
 public:
     int fieldHeight;
@@ -33,7 +36,7 @@ public:
     std::vector<Animals*> getAnimalArr();
     void checkForBounds(); //sets all animals' coords to inside of bouds
 };
-//possible type inputs: Boar, Cow, Fox, Goose, Gorilla, Pig, Sheep, Wolf
+//possible type inputs: Boar, Cow, Fox, Goose, Gorilla, Pig, Sheep, Wolf, Bush
 template<typename T>
 void Field::spawnAnimal(sf::Vector2f pos){
     Animals *animal;
