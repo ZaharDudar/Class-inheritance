@@ -50,6 +50,18 @@ private:
     sf::Sprite background;
     bool setFirstButton = true;
 
+    sf::Texture mapEnvTexture;
+    std::vector<sf::Sprite> mapEnv;
+    void mapGenerator(float frequency,double threashold, int octaves);
+    int mapGenNVoxel = 10;
+    int getNumberFromNoiseTrees(double noise_val){
+        if(noise_val<=0.5) return 0;
+        return 20 * (1-pow(noise_val+0.5,-5));
+    }
+    int getNumberFromNoiseGrass(double noise_val){
+        return 50 * exp(-60*pow(abs(noise_val-0.65),2));
+    }
+
     int outlineBg = 5;
     sf::RectangleShape buttonBackround;
 public:
