@@ -13,7 +13,11 @@ Cow::Cow(){
 
     this->food.push_back("Bush");
     
-    this->collisionRadius = 8*3;
-    this->viewRarius = 200;
-    this->moveSpeed=10*3;
+    this->needs_food = true;
+    this->food_max = 85.0f;
+    this->reproduction_max = 20.0f;
+
+    this->collisionRadius = 8;
+    this->viewRarius = 200/3;
+    this->moveSpeed=10;
 }
