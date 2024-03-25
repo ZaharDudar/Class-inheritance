@@ -5,6 +5,8 @@
 #include <iostream>
 #include <chrono>
 
+# include "../PerlinNoise.hpp"
+
 Drawer::Drawer(int W,int H){
     backgroundTexture.loadFromFile("./Backgroungs/field.png");
     background.setTexture(backgroundTexture);
@@ -26,7 +28,51 @@ Drawer::Drawer(int W,int H, float scF){
     buttonBackround.setFillColor(sf::Color(209, 206, 197));
     this->scalingFactor = scF;
     loadTextures();
+    mapGenerator(1,0.5,2);
 }
+
+void Drawer::mapGenerator(float frequency, double threashold, int octaves){
+    mapEnvTexture.loadFromFile("./Backgroungs/forest.png");
+    int W = window->getSize().x;
+    int H = window->getSize().y;
+    std::vector<sf::IntRect> trees;
+    std::vector<sf::IntRect> grass;
+
+    trees.push_back(sf::IntRect(0,0,32,56));
+    trees.push_back(sf::IntRect(32,0,32,51));
+    grass.push_back(sf::IntRect(3,70,11,6));
+    grass.push_back(sf::IntRect(20,70,10,4));
+    grass.push_back(sf::IntRect(35,70,10,5));
+
+    const siv::PerlinNoise::seed_type seed = (unsigned int)std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	const siv::PerlinNoise perlin{ seed };
+    for(int x_n = 0; x_n < mapGenNVoxel; x_n++){
+        for(int y_n = 0; y_n < mapGenNVoxel; y_n++){
+            double noiseValue = perlin.octave2D_01( x_n*frequency, y_n*frequency, octaves);
+            // cout<<noiseValue<<" | "<<getNumberFromNoiseTrees(noiseValue)<<" "<<getNumberFromNoiseGrass(noiseValue)<<'\n';
+            for(int grass_id=0; grass_id<getNumberFromNoiseGrass(noiseValue);grass_id++){
+                sf::Sprite bgTile;
+                bgTile.setTexture(mapEnvTexture);
+                bgTile.setTextureRect(grass[rand()%grass.size()]);
+                bgTile.setPosition((float)x_n/mapGenNVoxel * W + rand()%(H/mapGenNVoxel), (float)y_n/mapGenNVoxel * H + rand()%(H/mapGenNVoxel));
+                mapEnv.push_back(bgTile);
+            }
+        }
+    }
+    for(int x_n = 0; x_n < mapGenNVoxel; x_n++){
+        for(int y_n = 0; y_n < mapGenNVoxel; y_n++){
+            double noiseValue = perlin.octave2D_01( x_n*frequency, y_n*frequency, octaves);
+            for(int tree=0; tree<getNumberFromNoiseTrees(noiseValue);tree++){
+                sf::Sprite bgTile;
+                bgTile.setTexture(mapEnvTexture);
+                bgTile.setTextureRect(trees[rand()%trees.size()]);
+                bgTile.setPosition((float)x_n/mapGenNVoxel * W + rand()%(H/mapGenNVoxel), (float)y_n/mapGenNVoxel * H + rand()%(H/mapGenNVoxel));
+                mapEnv.push_back(bgTile);
+            }
+        }
+    }
+}
+
 
 void Drawer::loadTextures(){
     for(auto file : std::filesystem::directory_iterator("./PNG's")){
@@ -39,11 +85,12 @@ void Drawer::loadTextures(){
             ent.setTexture(this->textures[file.path()].back());
             ent.setTextureRect(sf::IntRect(frame,0,shape.x/4,shape.y));
             ent.setOrigin(shape.x/8,shape.y/2);
-
-            ent.setScale(1.0f*scalingFactor,1.0f*scalingFactor);
+            cout<<scalingFactor<<"!!!\n";
+            ent.setScale(scalingFactor,scalingFactor);
             this->entitySprites[file.path()].push_back(ent);
+            cout<<ent.getScale().x<<'\n';
 
-            ent.setScale(-1.0f*scalingFactor,1.0f*scalingFactor);
+            ent.setScale(-scalingFactor,scalingFactor);
             this->entitySpritesReverse[file.path()].push_back(ent);
         }
     }
@@ -80,8 +127,14 @@ void Drawer::draw(vector<Animals*> entities){
             }
         }
     }  
-    window->clear();
-    window->draw(background);
+    window->clear(sf::Color(10, 153, 5));
+    // window->draw(background);
+    for(int item_id=0;item_id < mapEnv.size(); item_id++){
+        window->draw(mapEnv[item_id]);   
+    }
+    
+
+
     for(int ent_id=0; ent_id < entities.size(); ent_id++){
         
         if(currentTime - (*entities[ent_id]).lastAnimUpdate > 1000000/animationFPS){
