@@ -36,7 +36,7 @@ protected:
     float food_max;
     float reproduction_max;
     int idle_sec_count;
-    int idle_change_time;
+    int idle_change_time; // every *this* seconds change idle wander direction
     sf::Vector2f idle_direction;
 public:
     sf::Clock food_clock;
