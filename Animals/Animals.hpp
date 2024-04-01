@@ -35,11 +35,14 @@ protected:
     bool needs_food;
     float food_max;
     float reproduction_max;
+    int idle_sec_count;
+    int idle_change_time;
+    sf::Vector2f idle_direction;
 public:
     sf::Clock food_clock;
     sf::Clock reproduct_clock;
     bool forcedReturn; // shit for collision
-    sf::Vector2f position; //------change back to protected
+    sf::Vector2f position; //------change back to protected -- maybe sometime later :/
     int animFrame=0;
     int64_t lastAnimUpdate;
     string sprite;

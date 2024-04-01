@@ -1,4 +1,5 @@
 #include "Animals.hpp"
+#include <random>
 
 void Animals::setCoords(float xCoord, float yCoord){
     this->position = sf::Vector2f(xCoord, yCoord);
@@ -77,6 +78,10 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
             }
             if (this->getSqrDistanceTo((*animalArr)[i]) < this->viewRarius*this->viewRarius){
                 if ((*animalArr)[i]->typeName == this->attractors[j]){
+                    if (((*animalArr)[i]->typeName == this->typeName) && (this->reproduct_clock.getElapsedTime().asSeconds() < this->reproduction_max)){
+                        cout << "пошел нахуй\n";
+                        continue;
+                    }
                     if (closestAttr == NULL){
                         closestAttr = (*animalArr)[i];
                         continue;
@@ -90,7 +95,15 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
     }
 
     if(closestRep==NULL and closestAttr==NULL){
-        return sf::Vector2f(0,0);
+        if (reproduct_clock.getElapsedTime().asSeconds() > idle_sec_count + idle_change_time){
+            idle_sec_count = floor(reproduct_clock.getElapsedTime().asSeconds());
+            std::random_device rd;   // non-deterministic generator
+            std::mt19937 gen(rd());  // to seed mersenne twister.
+            std::uniform_int_distribution<> dist(0, 100);
+            float angle = dist(gen);
+            idle_direction = sf::Vector2f(sin(angle/50*3.14),cos(angle/50*3.14));
+        }
+        return idle_direction;
     }
 
     sf::Vector2f diff;
@@ -149,6 +162,7 @@ bool Animals::foodCheck(std::vector<Animals*>* animalArr){
                     repr_check = true;
                     cout << "repr_check set to true" << endl;
                     this->reproduct_clock.restart();
+                    this->idle_sec_count = 0;
                     (*animalArr)[i]->reproduct_clock.restart();
             }
             for (int j = 0; j < this->food.size(); j++){
@@ -178,4 +192,6 @@ Animals::Animals(){
     this->needs_food = true;
     this->food_max = 10.0f;
     this->reproduction_max = 3.0f;
+    this->idle_sec_count = 0;
+    this->idle_change_time = 3;
 }
