@@ -101,10 +101,18 @@ void Drawer::loadTextures(){
         fr.setTextureRect(sf::IntRect(pframe*shape.x/5,0,shape.x/4,shape.y));
         fr.setOrigin(shape.x/5,shape.y);
         fr.setScale(pistolScale, pistolScale);
-        fr.setPosition(window->getSize().x, window->getSize().y);
+        fr.setPosition(window->getSize().x+15, window->getSize().y+20);
         pistolFrames.push_back(fr);
     }
-
+    shotButtonTexture.loadFromFile("./Backgrounds/scope.png");
+    shotButtonSp.setTexture(shotButtonTexture);
+    shotButtonSp.setOrigin(shotButtonTexture.getSize().x/2, shotButtonTexture.getSize().y/2);
+    shotButtonSp.setScale(shotBtScale, shotBtScale);
+    shotButtonSp.setPosition(window->getSize().x-shotButtonTexture.getSize().x*shotBtScale-10,shotButtonTexture.getSize().y*shotBtScale + 10);
+    shotBtBg.setPosition(window->getSize().x-shotButtonTexture.getSize().x*shotBtScale*1.5-10 - 5,shotButtonTexture.getSize().y*shotBtScale*0.5 + 10 - 6 );
+    shotBtBg.setSize(sf::Vector2f(shotButtonTexture.getSize().x*shotBtScale + 12, shotButtonTexture.getSize().y*shotBtScale + 12));
+    // shotBtBg.setPosition(window->getSize().x-shotButtonTexture.getSize().x*2-10 - 6, window->getSize().y+shotButtonTexture.getSize().y*2 +20 - 6 );
+    shotBtBg.setFillColor(sf::Color(209, 206, 197));
 }
 void Drawer::draw(vector<Animals*> entities){
     auto currentTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -128,14 +136,16 @@ void Drawer::draw(vector<Animals*> entities){
                 }
             }
             if(ev.mouseButton.button == sf::Mouse::Right){
-                for(int ent_id=0; ent_id < entities.size(); ent_id++ ){
-                    auto dir = (*entities[ent_id]).position - sf::Vector2f(ev.mouseButton.x,ev.mouseButton.y);
-                    if(sqrt(dir.x*dir.x + dir.y*dir.y) < (*entities[ent_id]).getCollisionRadius() and (*entities[ent_id]).alive){
-                        (*entities[ent_id]).alive = false;
-                        (*entities[ent_id]).deathAnimationPercent = 100;
+                if (pistolEquipted){
+                    for(int ent_id=0; ent_id < entities.size(); ent_id++ ){
+                        auto dir = (*entities[ent_id]).position - sf::Vector2f(ev.mouseButton.x,ev.mouseButton.y);
+                        if(sqrt(dir.x*dir.x + dir.y*dir.y) < (*entities[ent_id]).getCollisionRadius() and (*entities[ent_id]).alive){
+                            (*entities[ent_id]).alive = false;
+                            (*entities[ent_id]).deathAnimationPercent = 100;
+                        }
                     }
+                    pistolAnimFrame = 0; //Запуск анимации пистолета
                 }
-                pistolAnimFrame = 0; //Запуск анимации пистолета
             }
         }
     }  
@@ -193,6 +203,8 @@ void Drawer::draw(vector<Animals*> entities){
         }
     }
 
+    window->draw(shotBtBg);
+    window->draw(shotButtonSp);
     if(pistolEquipted){
         sf::Sprite currentPistolFrame;
         if(pistolAnimFrame == -1){
@@ -215,6 +227,10 @@ void Drawer::draw(vector<Animals*> entities){
             }
             pistolAnimLastFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         }
+        sf::RectangleShape highlight(sf::Vector2f((float)shotButtonTexture.getSize().x*shotBtScale, (float)shotButtonTexture.getSize().x*shotBtScale));
+        highlight.setFillColor(sf::Color(0,255,0,100));
+        highlight.setPosition(sf::Vector2f(shotButtonSp.getPosition().x - shotButtonTexture.getSize().x*shotBtScale/2, shotButtonSp.getPosition().y - shotButtonTexture.getSize().y*shotBtScale/2));
+        window->draw(highlight);
     }
 
     window->display();
@@ -250,6 +266,10 @@ void Drawer::addSpawnButton(string animName, Field *field,int x, int y, int w, i
     buttons.push_back(Button(ent, textures[string{"./PNG's/"} + animName + string(".png")][0], field, animName));
 }
 
+float magnitude(sf::Vector2f a, sf::Vector2f b){
+    return sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
+}
+
 void Drawer::updateGui(int x, int y){
     sf::Vector2f pos((float)x,(float)y);
     for(int b_id=0;b_id<buttons.size(); b_id++){
@@ -258,6 +278,9 @@ void Drawer::updateGui(int x, int y){
             stepUpdateButtons = true;
             buttons[b_id].press();
         }
+    }
+    if (magnitude(pos, shotButtonSp.getPosition()) <= shotButtonTexture.getSize().x*2){
+        pistolEquipted = !pistolEquipted;
     }
 }
 Button::Button(sf::Sprite sp, sf::Texture tx): selfSprite(sp), selfType(NONE), field(nullptr), selfTexture(tx){}
