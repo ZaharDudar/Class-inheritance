@@ -20,7 +20,11 @@ Fox::Fox(){
     this->food.push_back("Pig");
     this->food.push_back("Cow");
 
-    this->collisionRadius = 8*3;
-    this->viewRarius = 600;
-    this->moveSpeed=15*3;
+    this->needs_food = true;
+    this->food_max = 60.0f;
+    this->reproduction_max = 20.0f;
+
+    this->collisionRadius = 8;
+    this->viewRarius = 250;
+    this->moveSpeed=15;
 }

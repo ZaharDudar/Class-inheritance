@@ -9,7 +9,7 @@ Field::Field(){
     this->fieldWidth = 1200;
     this->fieldHeight = 1200;
     this->bush_spawn_cd = 3.0f;
-    this->last_bush_spawn_time = this->getMainTime();
+    this->last_bush_spawned_time = this->getMainTime();
 }
 
 Field::~Field(){
@@ -48,11 +48,12 @@ void Field::update(){
         }
         }
     }
-    this->checkForBounds();
-    if (this->getMainTime() - this->last_bush_spawn_time > bush_spawn_cd){
+    if (this->getMainTime() - this->last_bush_spawned_time > this->bush_spawn_cd){
         spawnAnimal<Bush>();
-        this->last_bush_spawn_time = this->getMainTime();
+        this->last_bush_spawned_time = this->getMainTime();
+        cout << "bush spawned\n";
     }
+    checkForBounds();
     this->previousFrameTime = this->currentFrameTime;
     this->currentFrameTime = getMainTime();
     // for (int i = 0; i < animalArr.size(); i++){-----------------animalArr cout

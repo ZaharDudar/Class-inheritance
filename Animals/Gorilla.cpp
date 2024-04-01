@@ -13,7 +13,11 @@ Gorilla::Gorilla(){
     this->food.push_back("Fox");
     this->food.push_back("Wolf");
 
-    this->viewRarius = 200;
-    this->collisionRadius = 16*3;
-    this->moveSpeed=8*3;
+    this->needs_food = true;
+    this->food_max = 100.0f;
+    this->reproduction_max = 100.0f;
+
+    this->viewRarius = 200/3;
+    this->collisionRadius = 16;
+    this->moveSpeed=10;
 }

@@ -22,7 +22,11 @@ Wolf::Wolf(){
     this->food.push_back("Pig");
     this->food.push_back("Cow");
 
-    this->viewRarius = 400;
-    this->collisionRadius = 8*3;
-    this->moveSpeed=15*3;
+    this->needs_food = true;
+    this->food_max = 60.0f;
+    this->reproduction_max = 20.0f;
+
+    this->viewRarius = 250;
+    this->collisionRadius = 8;
+    this->moveSpeed=15;
 }

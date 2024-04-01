@@ -13,7 +13,11 @@ Boar::Boar(){
     this->food.push_back("Fox");
     this->food.push_back("Wolf");
 
-    this->collisionRadius = 8*3;
-    this->viewRarius = 600;
-    this->moveSpeed = 20*3;
+    this->needs_food = true;
+    this->food_max = 60.0f;
+    this->reproduction_max = 20.0f;
+
+    this->collisionRadius = 8;
+    this->viewRarius = 500;
+    this->moveSpeed = 20;
 }

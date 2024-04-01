@@ -19,8 +19,7 @@ protected:
     float previousFrameTime, currentFrameTime;
     sf::Clock mainClock;
     std::vector<Animals*> animalArr;
-    std::vector<Bush*> bush_arr;
-    float last_bush_spawn_time, bush_spawn_cd;
+    float last_bush_spawned_time, bush_spawn_cd;
 
 public:
     int fieldHeight;
