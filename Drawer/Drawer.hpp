@@ -51,6 +51,9 @@ private:
     sf::Sprite background;
     bool setFirstButton = true;
 
+    int windowH;
+    int windowW;
+
     sf::Texture mapEnvTexture;
     std::vector<sf::Sprite> mapEnv;
     void mapGenerator(float frequency,double threashold, int octaves);
