@@ -10,6 +10,7 @@ Sheep::Sheep(){
     this->repulsors.push_back("Wolf");
     this->attractors.push_back("Bush");
     this->attractors.push_back("Sheep");
+    
 
     this->food.push_back("Bush");
     

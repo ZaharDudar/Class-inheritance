@@ -8,7 +8,7 @@ Field::Field(){
     this->currentFrameTime = getMainTime();
     this->fieldWidth = 1200;
     this->fieldHeight = 1200;
-    this->bush_spawn_cd = 3.0f;
+    this->bush_spawn_cd = 1.5f;
     this->last_bush_spawned_time = this->getMainTime();
 }
 

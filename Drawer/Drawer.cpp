@@ -86,7 +86,7 @@ void Drawer::loadTextures(){
             ent.setTextureRect(sf::IntRect(frame,0,shape.x/4,shape.y));
             ent.setOrigin(shape.x/8,shape.y/2);
             
-            ent.setScale(-scalingFactor,scalingFactor);
+            ent.setScale(scalingFactor,scalingFactor);
             this->entitySprites[file.path()].push_back(ent);
 
             ent.setScale(-scalingFactor,scalingFactor);

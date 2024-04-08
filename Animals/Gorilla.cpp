@@ -9,9 +9,11 @@ Gorilla::Gorilla(){
     this->attractors.push_back("Fox");
     this->attractors.push_back("Wolf");
     this->attractors.push_back("Gorilla");
+    this->attractors.push_back("Bush");
 
     this->food.push_back("Fox");
     this->food.push_back("Wolf");
+    this->food.push_back("Bush");
 
     this->needs_food = true;
     this->food_max = 100.0f;
