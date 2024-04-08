@@ -18,6 +18,11 @@ int main(){
     drawer.addSpawnButton("Gorilla", &sunnyHill, 140,20,50,50);
     drawer.addSpawnButton("Goose", &sunnyHill, 140,80,50,50);
     drawer.addSpawnButton("Cow", &sunnyHill, 200,20,50,50);
+    drawer.addSpawnButton("Pig", &sunnyHill, 200,80,50,50);
+
+
+    drawer.addPlot("Predators", &sunnyHill, 10,150,300,120);
+    drawer.addPlot("Herbivores", &sunnyHill, 10,290,300,120);
 
     sunnyHill.spawnAnimal<Pig>();
     while(true){
