@@ -12,4 +12,7 @@ Bush::Bush(){
     this->moveSpeed = 0;
     this->collisionRadius = 8;
     this->needs_food = false;
+
+    this->collisionRadius = 8;
+    this->viewRarius = 200/3;
 }

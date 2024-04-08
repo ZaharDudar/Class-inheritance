@@ -5,30 +5,8 @@
 #include "../Animals/Animals.hpp"
 #include <chrono>
 #include "../Field/Field.hpp"
-
-class Button{
-    protected:
-        enum buttonType{
-            NONE,
-            SPAWNBUTTON
-        };
-        std::string test;
-        sf::Texture selfTexture;
-
-        Field *field;
-        string spawnArg;
-
-        int selfType;
-    public:
-        bool seleted = false;
-        sf::Sprite selfSprite;
-        Button(sf::Sprite,sf::Texture);
-        Button(sf::Sprite,sf::Texture, Field *field, string);
-        bool checkPress(sf::Vector2f);
-        // bool focused(sf::Vector2f);
-        void press();
-        void useOnMap(int x, int y);
-};
+#include "Button.hpp"
+#include "plot.hpp"
 
 class Drawer
 {
@@ -50,6 +28,10 @@ private:
     sf::Sprite background;
     bool setFirstButton = true;
 
+    int windowH;
+    int windowW;
+
+    //окружения и фунции распределения
     sf::Texture mapEnvTexture;
     std::vector<sf::Sprite> mapEnv;
     void mapGenerator(float frequency,double threashold, int octaves);
@@ -62,13 +44,34 @@ private:
         return 50 * exp(-60*pow(abs(noise_val-0.65),2));
     }
 
+    //пистолет
+    float pistolScale = 0.4f; 
+    sf::Texture pistolTexture;
+    std::vector<sf::Sprite> pistolFrames;
+    bool pistolEquipted = false;
+    int pistolAnimFrame = -1; // -1 - нет анимации, 0 -> 4 и играет анимация, а потом опять присваивается -1
+    int pistolAnimFPS = 10;
+    int64_t pistolAnimLastFrameTime;
+    float pistolMoveFactor = 50.0f;
+
+    //кнопка стрельбы
+    sf::Texture shotButtonTexture; 
+    sf::Sprite shotButtonSp;
+    sf::RectangleShape shotBtBg;
+    float shotBtScale = 4;
+
+    //параметры для кнопок
     int outlineBg = 5;
     sf::RectangleShape buttonBackround;
+
+    //графики
+    vector<plot> plots;
 public:
     Drawer(int W,int H);
     Drawer(int W,int H, float scF);
     //Добавить кнопку спавна
     void addSpawnButton(string animalName,Field *field,int x, int y, int w, int h);
+    void addPlot(string trakingObj,Field *field, int x, int y, int w, int h);
     void draw(vector<Animals*>);
     ~Drawer(){};
 };

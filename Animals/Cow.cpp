@@ -8,8 +8,8 @@ Cow::Cow(){
 
     this->repulsors.push_back("Fox");
     this->repulsors.push_back("Wolf");
-    this->attractors.push_back("Cow");
     this->attractors.push_back("Bush");
+    this->attractors.push_back("Cow");
 
     this->food.push_back("Bush");
     
