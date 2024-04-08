@@ -45,6 +45,9 @@ plot::plot(int x, int y, int h, int w, int dataSize, std::string text, Field *f,
         data[i]=0;
     }
     font.loadFromFile("./fonts/MetalMania.ttf");
+    // font.loadFromFile("./fonts/metal2.otf");
+    // font.loadFromFile("./fonts/metal3.ttf");
+    // font.loadFromFile("./fonts/metal4.ttf");
 };
 
 

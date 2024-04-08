@@ -24,7 +24,6 @@ int main(){
     drawer.addPlot("Predators", &sunnyHill, 10,150,300,120);
     drawer.addPlot("Herbivores", &sunnyHill, 10,290,300,120);
 
-    sunnyHill.spawnAnimal<Pig>();
     while(true){
         sunnyHill.update();
         drawer.draw(sunnyHill.getAnimalArr());
