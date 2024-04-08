@@ -76,9 +76,20 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
             if ((*animalArr)[i] == this || ((*animalArr)[i]->alive == false)){
                 continue;
             }
+            if (this->getSqrDistanceTo((*animalArr)[i]) < 9*this->viewRarius*this->viewRarius){
+                if ((this->typeName==(*animalArr)[i]->typeName) && ((*animalArr)[i]->typeName == this->attractors[j]) && (this->reproduct_clock.getElapsedTime().asSeconds() > this->reproduction_max)){
+                    if (closestAttr == NULL){
+                        closestAttr = (*animalArr)[i];
+                        continue;
+                    }
+                    if (this->getSqrDistanceTo(closestAttr) > this->getSqrDistanceTo((*animalArr)[i])){
+                        closestAttr = (*animalArr)[i];
+                    }
+                }
+            }
             if (this->getSqrDistanceTo((*animalArr)[i]) < this->viewRarius*this->viewRarius){
                 if ((*animalArr)[i]->typeName == this->attractors[j]){
-                    if (((*animalArr)[i]->typeName == this->typeName) && (this->reproduct_clock.getElapsedTime().asSeconds() < this->reproduction_max)){
+                    if ((*animalArr)[i]->typeName == this->typeName){
                         continue;
                     }
                     if (closestAttr == NULL){
