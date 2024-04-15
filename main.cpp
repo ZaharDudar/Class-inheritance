@@ -31,7 +31,7 @@ int main(int argc, char **argv){
     readFile(config, sunnyHill, &simName);
     std::cout<<simName<<"|dasda";
     ofstream log;
-    log.open("./"+simName+".log");
+    log.open("./logs/"+simName+".log");
 
     bool startLog=false;
     unsigned long long int step=0;
