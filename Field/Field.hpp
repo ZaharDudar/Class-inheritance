@@ -20,8 +20,8 @@ protected:
     sf::Clock mainClock;
     std::vector<Animals*> animalArr;
     float last_bush_spawned_time, bush_spawn_cd;
-
 public:
+    float time_scale;
     int fieldHeight;
     int fieldWidth;
     Field();

@@ -12,8 +12,8 @@ bool Animals::circleCollision(Animals* animal){
             (this->collisionRadius + animal->collisionRadius));
 };
 
-void Animals::move(sf::Vector2f direction, float delta){
-    sf::Vector2f newPosition = this->position + this->moveSpeed * delta * direction;
+void Animals::move(sf::Vector2f direction, float delta, float time_scale){
+    sf::Vector2f newPosition = this->position + this->moveSpeed * delta * direction * time_scale;
     if (this->prev_position == sf::Vector2f(-1.0f, -1.0f)){
         this->prev_position = this->position; 
     }

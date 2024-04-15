@@ -52,7 +52,7 @@ public:
     float getSqrDistanceTo(Animals*);
     bool circleCollision(Animals*);
     void setCoords(float, float);
-    void move(sf::Vector2f, float);
+    void move(sf::Vector2f, float, float);
     virtual void say() = 0;
     //deletes every food in 2.5 radius of collisionRadius
     bool foodCheck(std::vector<Animals*>*);

@@ -10,6 +10,7 @@ Field::Field(){
     this->fieldHeight = 1200;
     this->bush_spawn_cd = 1.5f;
     this->last_bush_spawned_time = this->getMainTime();
+    this->time_scale = 1;
 }
 
 Field::~Field(){
@@ -26,7 +27,7 @@ float Field::getMainTime(){
 void Field::update(){
     for (int i = 0; i < this->animalArr.size(); i++){
         if ((animalArr[i]->alive) && (animalArr[i]->getTypeName() != "Bush")){
-        animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true), this->currentFrameTime - this->previousFrameTime);
+        animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true), this->currentFrameTime - this->previousFrameTime, this->time_scale);
         if (animalArr[i]->foodCheck(&(this->animalArr))){
             cout << "boutta spawn " << animalArr[i]->getTypeName() << endl;
             if (animalArr[i]->getTypeName() == "Wolf")
