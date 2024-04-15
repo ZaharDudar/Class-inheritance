@@ -49,7 +49,7 @@ void Field::update(){
         }
         }
     }
-    if (this->getMainTime() - this->last_bush_spawned_time > this->bush_spawn_cd){
+    if ((this->getMainTime() - this->last_bush_spawned_time)*this->time_scale > this->bush_spawn_cd){
         spawnAnimal<Bush>();
         this->last_bush_spawned_time = this->getMainTime();
         cout << "bush spawned\n";
