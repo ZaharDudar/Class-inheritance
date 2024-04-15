@@ -26,6 +26,7 @@ public:
     int fieldWidth;
     Field();
     ~Field();
+    void spawnAnimal(std::string name, int n, sf::Vector2f pos);
     template<typename T>
     void spawnAnimal();
     template<typename T>
@@ -73,3 +74,4 @@ void Field::spawnAnimal(){
     int yCoord = distY(gen);
     this->spawnAnimal<T>(sf::Vector2f(xCoord, yCoord));
 }
+

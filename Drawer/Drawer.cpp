@@ -292,3 +292,6 @@ void Drawer::addPlot(string trakingObj, Field* f, int x, int y, int w, int h){
     plot newplot(x, y, w, h, 100, trakingObj,f,trakingObj);
     plots.push_back(newplot);
 }
+vector<plot> Drawer::getPlots(){
+    return plots;
+}

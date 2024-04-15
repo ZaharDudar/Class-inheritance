@@ -74,4 +74,5 @@ public:
     void addPlot(string trakingObj,Field *field, int x, int y, int w, int h);
     void draw(vector<Animals*>);
     ~Drawer(){};
+    vector<plot> getPlots();
 };

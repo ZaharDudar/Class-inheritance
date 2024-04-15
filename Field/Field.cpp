@@ -82,3 +82,26 @@ void Field::checkForBounds(){
         }
     }
 };
+
+void Field::spawnAnimal(std::string name, int n, sf::Vector2f pos){
+    for(int i=0;i<n;i++){
+        if (name == "Wolf")
+            this->spawnAnimal<Wolf>(pos);
+        else if (name == "Boar")
+            this->spawnAnimal<Boar>(pos);
+        else if (name == "Fox")
+            this->spawnAnimal<Fox>(pos);
+        else if (name == "Goose")
+            this->spawnAnimal<Goose>(pos);
+        else if (name == "Pig")
+            this->spawnAnimal<Pig>(pos);
+        else if (name == "Cow")
+            this->spawnAnimal<Cow>(pos);
+        else if (name == "Gorilla")
+            this->spawnAnimal<Gorilla>(pos);
+        else if (name == "Sheep")
+            this->spawnAnimal<Sheep>(pos);
+        else 
+            throw std::invalid_argument( "recieved invalid type argument to attach funck" );
+    }
+}

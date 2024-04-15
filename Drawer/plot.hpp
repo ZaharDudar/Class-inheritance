@@ -27,5 +27,7 @@ class plot{
 
         void update();
         void plotOnWin(sf::RenderWindow *w);
+        int getVal();
+        std::string getName();
 };
 

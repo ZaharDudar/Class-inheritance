@@ -65,3 +65,10 @@ void plot::plotOnWin(sf::RenderWindow *w){
         w->draw(&line[0], line.size(),sf::LinesStrip);
         w->draw(plotName);
 }
+
+int plot::getVal(){
+    return data[dataSize-1];
+}
+std::string plot::getName(){
+    return text;
+}
