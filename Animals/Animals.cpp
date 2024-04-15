@@ -12,8 +12,8 @@ bool Animals::circleCollision(Animals* animal){
             (this->collisionRadius + animal->collisionRadius));
 };
 
-void Animals::move(sf::Vector2f direction, float delta){
-    sf::Vector2f newPosition = this->position + this->moveSpeed * delta * direction;
+void Animals::move(sf::Vector2f direction, float delta, float time_scale){
+    sf::Vector2f newPosition = this->position + this->moveSpeed * delta * direction * time_scale;
     if (this->prev_position == sf::Vector2f(-1.0f, -1.0f)){
         this->prev_position = this->position; 
     }
@@ -76,9 +76,20 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
             if ((*animalArr)[i] == this || ((*animalArr)[i]->alive == false)){
                 continue;
             }
+            if (this->getSqrDistanceTo((*animalArr)[i]) < 9*this->viewRarius*this->viewRarius){
+                if ((this->typeName==(*animalArr)[i]->typeName) && ((*animalArr)[i]->typeName == this->attractors[j]) && (this->reproduct_clock.getElapsedTime().asSeconds() > this->reproduction_max)){
+                    if (closestAttr == NULL){
+                        closestAttr = (*animalArr)[i];
+                        continue;
+                    }
+                    if (this->getSqrDistanceTo(closestAttr) > this->getSqrDistanceTo((*animalArr)[i])){
+                        closestAttr = (*animalArr)[i];
+                    }
+                }
+            }
             if (this->getSqrDistanceTo((*animalArr)[i]) < this->viewRarius*this->viewRarius){
                 if ((*animalArr)[i]->typeName == this->attractors[j]){
-                    if (((*animalArr)[i]->typeName == this->typeName) && (this->reproduct_clock.getElapsedTime().asSeconds() < this->reproduction_max)){
+                    if ((*animalArr)[i]->typeName == this->typeName){
                         continue;
                     }
                     if (closestAttr == NULL){

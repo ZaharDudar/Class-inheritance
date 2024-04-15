@@ -11,6 +11,7 @@ void readFile(fstream& cfg, Field& f, string* simName);
 
 int main(int argc, char **argv){
     Field sunnyHill;
+    sunnyHill.time_scale = 3;
     Drawer drawer(sunnyHill.fieldWidth, sunnyHill.fieldHeight, 1);
     // sunnyHill.spawnAnimal<Wolf>();
     drawer.addSpawnButton("Wolf", &sunnyHill, 20,20,50,50);
@@ -35,6 +36,7 @@ int main(int argc, char **argv){
 
     bool startLog=false;
     unsigned long long int step=0;
+    // sunnyHill.spawnAnimal<Pig>();
     while(true){
         sunnyHill.update();
         drawer.draw(sunnyHill.getAnimalArr());
@@ -76,7 +78,7 @@ void readFile(fstream& cfg, Field& f, string* simName){
             }
         }
         if(dataPos == 1){
-            timeScale = stoi(tmp);
+            f.time_scale = stoi(tmp);
         }
         tmp = ""; 
         dataPos=0;
