@@ -69,9 +69,11 @@ void Field::spawnAnimal(){
     std::random_device rd;   // non-deterministic generator
     std::mt19937 gen(rd());  // to seed mersenne twister.
     std::uniform_int_distribution<> distX(10, this->fieldWidth - 10);
-    int xCoord = distX(gen);
+    // int xCoord = distX(gen);
+    int xCoord = std::rand()%(this->fieldWidth - 10) + 10;
     std::uniform_int_distribution<> distY(10, this->fieldHeight - 10);
-    int yCoord = distY(gen);
+    // int yCoord = distY(gen);
+    int yCoord = std::rand()%(this->fieldHeight - 10) + 10;
     this->spawnAnimal<T>(sf::Vector2f(xCoord, yCoord));
 }
 

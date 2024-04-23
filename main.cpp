@@ -30,7 +30,6 @@ int main(int argc, char **argv){
     string simName;
     config.open(argv[1]);
     readFile(config, sunnyHill, &simName);
-    std::cout<<simName<<"|dasda";
     ofstream log;
     log.open("./logs/"+simName+".log");
 
@@ -45,11 +44,12 @@ int main(int argc, char **argv){
         step++;
         log<<"step "<<step<<"\n";
         for(int an=0; an<plots.size();an++){
-            log<<plots[an].getName() <<" "<< std::to_string(plots[an].getVal())<<"\n";
+            log<<plots[an].getName() <<" "<< std::to_string(plots[an].getVal())<<startLog<<"\n";
         }
+        if(plots[0].getVal() != 0 and plots[1].getVal() != 0 and !startLog) startLog = true;// Сделать нормально
         for(int an=0; an<plots.size();an++){
-            if(plots[an].getVal() != 0 and !startLog) startLog = true;
-            if(plots[an].getVal() == 0 and startLog){
+
+            if(plots[an].getVal() <= 1 and startLog){
                 log.close();
                 return 0;
             }

@@ -14,7 +14,7 @@ Boar::Boar(){
     this->food.push_back("Wolf");
 
     this->needs_food = true;
-    this->food_max = 60.0f;
+    this->food_max = 40.0f;
     this->reproduction_max = 20.0f;
 
     this->collisionRadius = 8;

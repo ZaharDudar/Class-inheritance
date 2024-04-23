@@ -27,8 +27,8 @@ float Field::getMainTime(){
 void Field::update(){
     for (int i = 0; i < this->animalArr.size(); i++){
         if ((animalArr[i]->alive) && (animalArr[i]->getTypeName() != "Bush")){
-        animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true), this->currentFrameTime - this->previousFrameTime, this->time_scale);
-        if (animalArr[i]->foodCheck(&(this->animalArr))){
+        animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true, this->time_scale), this->currentFrameTime - this->previousFrameTime, this->time_scale);
+        if (animalArr[i]->foodCheck(&(this->animalArr), this->time_scale)){
             cout << "boutta spawn " << animalArr[i]->getTypeName() << endl;
             if (animalArr[i]->getTypeName() == "Wolf")
             spawnAnimal<Wolf>(animalArr[i]->position + sf::Vector2f(20, 20));
@@ -52,7 +52,7 @@ void Field::update(){
     if ((this->getMainTime() - this->last_bush_spawned_time)*this->time_scale > this->bush_spawn_cd){
         spawnAnimal<Bush>();
         this->last_bush_spawned_time = this->getMainTime();
-        cout << "bush spawned\n";
+        // cout << "bush spawned\n";
     }
     checkForBounds();
     this->previousFrameTime = this->currentFrameTime;
@@ -102,6 +102,8 @@ void Field::spawnAnimal(std::string name, int n, sf::Vector2f pos){
             this->spawnAnimal<Gorilla>(pos);
         else if (name == "Sheep")
             this->spawnAnimal<Sheep>(pos);
+        else if (name == "Bush")
+            this->spawnAnimal<Bush>(pos);
         else 
             throw std::invalid_argument( "recieved invalid type argument to attach funck" );
     }

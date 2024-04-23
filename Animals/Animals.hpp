@@ -38,6 +38,7 @@ protected:
     int idle_sec_count;
     int idle_change_time; // every *this* seconds change idle wander direction
     sf::Vector2f idle_direction;
+    bool has_eaten;
 public:
     sf::Clock food_clock;
     sf::Clock reproduct_clock;
@@ -48,14 +49,14 @@ public:
     string sprite;
     float collisionRadius, viewRarius;
     bool lookDirection; //false for left, true for right
-    sf::Vector2f aiDirection(std::vector<Animals*>*, bool);
+    sf::Vector2f aiDirection(std::vector<Animals*>*, bool, float);
     float getSqrDistanceTo(Animals*);
     bool circleCollision(Animals*);
     void setCoords(float, float);
     void move(sf::Vector2f, float, float);
     virtual void say() = 0;
     //deletes every food in 2.5 radius of collisionRadius
-    bool foodCheck(std::vector<Animals*>*);
+    bool foodCheck(std::vector<Animals*>*, float);
     float getCollisionRadius();
     string getTypeName();
     bool alive;

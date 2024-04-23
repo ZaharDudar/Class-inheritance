@@ -16,7 +16,7 @@ Wolf::Wolf(){
     this->repulsors.push_back("Gorilla");
     this->moveSpeed=100;
     
-    this->food.push_back("Wolf");
+    // this->food.push_back("Wolf");
     this->food.push_back("Sheep");
     this->food.push_back("Goose");
     this->food.push_back("Pig");

@@ -18,7 +18,7 @@ Sheep::Sheep(){
     this->food_max = 70.0f;
     this->reproduction_max = 20.0f;
 
-    this->viewRarius = 150/3;
+    this->viewRarius = 150;
     this->collisionRadius = 8;
     this->moveSpeed=10;
 }
