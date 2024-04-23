@@ -23,7 +23,7 @@ with open("config1.cfg", 'w') as f:
         f.write("Sheep " + str(sheep_coords[i][0]) + " " + str(sheep_coords[i][1]) + " 1\n")
     f.write("Fox 700 700 2")
 os.system("export LD_LIBRARY_PATH=./SFML-2.6.1/lib && ./zoo config1.cfg")
-with open("/mnt/c/Users/n/Desktop/oop_repo/Class-inheritance/logs/test1.log", 'r') as f:
+with open("./logs/test1.log", 'r') as f:
     result = len(f.readlines())
     print('New result', result)
 go_on = True
@@ -40,7 +40,7 @@ while go_on:
         f.write("Fox 700 700 1\n")
         f.write("Fox 300 300 1")
     os.system("export LD_LIBRARY_PATH=./SFML-2.6.1/lib && ./zoo config1.cfg")  # ещё реализация
-    with open("/mnt/c/Users/n/Desktop/oop_repo/Class-inheritance/logs/test1.log", 'r') as f:
+    with open("./logs/test1.log", 'r') as f:
         new_result = len(f.readlines())
         print('New result', new_result)
     if new_result > result:
