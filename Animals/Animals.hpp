@@ -40,6 +40,7 @@ protected:
     sf::Vector2f idle_direction;
     bool has_eaten;
 public:
+    float random_seed;
     sf::Clock food_clock;
     sf::Clock reproduct_clock;
     bool forcedReturn; // shit for collision

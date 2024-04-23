@@ -11,7 +11,6 @@
 #include "../Animals/Cow.hpp"
 #include "../Animals/Boar.hpp"
 #include "../Animals/Bush.hpp"
-#include <random>
 
 class Field
 {
@@ -20,6 +19,7 @@ protected:
     sf::Clock mainClock;
     std::vector<Animals*> animalArr;
     float last_bush_spawned_time, bush_spawn_cd;
+    float random_seed;
 public:
     float time_scale;
     int fieldHeight;
@@ -52,9 +52,11 @@ void Field::spawnAnimal(sf::Vector2f pos){
         if (arrIndex != -1){
             animalArr[arrIndex]->alive = true;
             animal = animalArr[arrIndex];
+            animal->random_seed = arrIndex;
         }else{
             animal = new T;
             animalArr.push_back(animal);
+            animal->random_seed = animalArr.size();
         }
     }
     else{
@@ -66,14 +68,16 @@ void Field::spawnAnimal(sf::Vector2f pos){
 }
 template<typename T>
 void Field::spawnAnimal(){
-    std::random_device rd;   // non-deterministic generator
-    std::mt19937 gen(rd());  // to seed mersenne twister.
-    std::uniform_int_distribution<> distX(10, this->fieldWidth - 10);
+    // std::random_device rd;   // non-deterministic generator
+    // std::mt19937 gen(rd());  // to seed mersenne twister.
+    // std::uniform_int_distribution<> distX(10, this->fieldWidth - 10);
     // int xCoord = distX(gen);
-    int xCoord = std::rand()%(this->fieldWidth - 10) + 10;
-    std::uniform_int_distribution<> distY(10, this->fieldHeight - 10);
+
+    int xCoord = ((this->random_seed+1)*0.31 - floor((this->random_seed+1)*0.31))*(this->fieldWidth - 20) + 10;
+    // std::uniform_int_distribution<> distY(10, this->fieldHeight - 10);
     // int yCoord = distY(gen);
-    int yCoord = std::rand()%(this->fieldHeight - 10) + 10;
+    int yCoord = (tan(this->random_seed+1) - floor(tan(this->random_seed+1)))*(this->fieldHeight - 20) + 10;
+    this->random_seed++;
     this->spawnAnimal<T>(sf::Vector2f(xCoord, yCoord));
 }
 

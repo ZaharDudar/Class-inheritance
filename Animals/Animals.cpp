@@ -1,5 +1,4 @@
 #include "Animals.hpp"
-#include <random>
 
 void Animals::setCoords(float xCoord, float yCoord){
     this->position = sf::Vector2f(xCoord, yCoord);
@@ -107,11 +106,13 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
     if(closestRep==NULL and closestAttr==NULL){
         if (reproduct_clock.getElapsedTime().asSeconds() > idle_sec_count + idle_change_time / time_scale){
             idle_sec_count = floor(reproduct_clock.getElapsedTime().asSeconds());
-            std::random_device rd;   // non-deterministic generator
-            std::mt19937 gen(rd());  // to seed mersenne twister.
-            std::uniform_int_distribution<> dist(0, 100);
-            float angle = dist(gen);
+            // std::random_device rd;   // non-deterministic generator
+            // std::mt19937 gen(rd());  // to seed mersenne twister.
+            // std::uniform_int_distribution<> dist(0, 100);
+            // float angle = dist(gen);
+            float angle = this->random_seed * 30;
             idle_direction = sf::Vector2f(sin(angle/50*3.14),cos(angle/50*3.14));
+            this->random_seed += 2;
         }
         return idle_direction;
     }
@@ -206,6 +207,6 @@ Animals::Animals(){
     this->food_max = 10.0f;
     this->reproduction_max = 3.0f;
     this->idle_sec_count = 0;
-    this->idle_change_time = 3;
+    this->idle_change_time = 15;
     this->has_eaten = false;
 }

@@ -11,6 +11,7 @@ Field::Field(){
     this->bush_spawn_cd = 1.5f;
     this->last_bush_spawned_time = this->getMainTime();
     this->time_scale = 1;
+    this->random_seed = 0;
 }
 
 Field::~Field(){
