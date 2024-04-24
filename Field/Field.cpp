@@ -28,9 +28,9 @@ float Field::getMainTime(){
 
 void Field::update(){
     for (int i = 0; i < this->animalArr.size(); i++){
-        if ((animalArr[i]->alive) && (animalArr[i]->getTypeName() != "Bush")){
+        if ((animalArr[i]->alive) && (animalArr[i]->getTypeName() != "Bush")){  // moves everyone
         animalArr[i]->move(animalArr[i]->aiDirection(&(this->animalArr), true, this->time_scale), this->currentFrameTime - this->previousFrameTime, this->time_scale);
-        if (animalArr[i]->foodCheck(&(this->animalArr), this->time_scale)){
+        if (animalArr[i]->foodCheck(&(this->animalArr), this->time_scale)){  // kills everyone who should be dead by now in foodCheck & sets up reproduction
             cout << "boutta spawn " << animalArr[i]->getTypeName() << endl;
             if (animalArr[i]->getTypeName() == "Wolf")
             spawnAnimal<Wolf>(animalArr[i]->position + sf::Vector2f(20, 20));

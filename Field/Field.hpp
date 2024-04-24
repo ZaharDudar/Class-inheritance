@@ -16,10 +16,10 @@ class Field
 {
 protected:
     float previousFrameTime, currentFrameTime;
-    sf::Clock mainClock;
-    std::vector<Animals*> animalArr;
+    sf::Clock mainClock;  //actually legacy at this point
+    std::vector<Animals*> animalArr;  //array for all animals in da field
     float last_bush_spawned_time, bush_spawn_cd;
-    float random_seed;
+    float random_seed;  // for pseudo-random
 public:
     float time_scale;
     int fieldHeight;
@@ -31,8 +31,8 @@ public:
     void spawnAnimal();
     template<typename T>
     void spawnAnimal(sf::Vector2f);
-    float getMainTime();
-    void update();
+    float getMainTime(); // legacy
+    void update();  // main Field method
     std::vector<Animals*> getAnimalArr();
     void checkForBounds(); //sets all animals' coords to inside of bouds
 };

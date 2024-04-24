@@ -106,7 +106,7 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
         }
     }
 
-    if(closestRep==NULL and closestAttr==NULL){
+    if(closestRep==NULL and closestAttr==NULL){  // set to wander mode if nothing happens
         if (reproduct_clock > idle_sec_count + idle_change_time / time_scale){
             idle_sec_count = reproduct_clock;
             // std::random_device rd;   // non-deterministic generator
