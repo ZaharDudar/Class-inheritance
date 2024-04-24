@@ -25,6 +25,6 @@ Fox::Fox(){
     this->reproduction_max = 20.0f;
 
     this->collisionRadius = 8;
-    this->viewRarius = 250;
+    this->viewRarius = 300;
     this->moveSpeed=15;
 }

@@ -5,7 +5,7 @@ max_shift = 50
 fails_count = 0
 max_fails_count = 5
 
-time_scale = 30
+time_scale = 10
 window_width = 1200
 window_height = 1200
 sheep_count = 50
@@ -53,6 +53,13 @@ while go_on:
     if fails_count >= max_fails_count:
         go_on = False
 
-print("best position", sheep_coords, result)
+print("result", result)
+
 
 #запись в файл конфига
+with open("config1.cfg", 'w') as f:
+    f.write("test1 " + str(time_scale) + "\n")
+    for i in range(sheep_count):
+        f.write("Sheep " + str(sheep_coords[i][0]) + " " + str(sheep_coords[i][1]) + " 1\n")
+    f.write("Fox 700 700 1\n")
+    f.write("Fox 300 300 1")

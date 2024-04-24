@@ -2,10 +2,11 @@
 #include <vector>
 #include <random>
 #include <typeinfo>
+#include <unistd.h>
 
 Field::Field(){
-    this->previousFrameTime = getMainTime();
-    this->currentFrameTime = getMainTime();
+    this->previousFrameTime = this->getMainTime();
+    this->currentFrameTime = this->getMainTime();
     this->fieldWidth = 1200;
     this->fieldHeight = 1200;
     this->bush_spawn_cd = 1.5f;
@@ -56,8 +57,16 @@ void Field::update(){
         // cout << "bush spawned\n";
     }
     checkForBounds();
+    // float delt = currentFrameTime - this->getMainTime();
+    // if (delt > 0){ //  страшная вещь вообще не лезь убъёт
+        // sleep(delt);
+    // }else{
+        // this->currentFrameTime = this->getMainTime();
+    // }
     this->previousFrameTime = this->currentFrameTime;
-    this->currentFrameTime = getMainTime();
+    this->currentFrameTime = this->previousFrameTime + 0.02; 
+    // cout << "delta " << currentFrameTime - previousFrameTime << "\n";
+    // this->currentFrameTime = getMainTime(); //  вот так тип нормально в плане времени, но хрень в плане точности симуляции
     // for (int i = 0; i < animalArr.size(); i++){-----------------animalArr cout
     //     cout << animalArr[i]->getTypeName() << " ";
     // }

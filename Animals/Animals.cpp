@@ -12,6 +12,9 @@ bool Animals::circleCollision(Animals* animal){
 };
 
 void Animals::move(sf::Vector2f direction, float delta, float time_scale){
+    this->reproduct_clock += 0.02;
+    this->food_clock += 0.02;
+    cout << "reproduct clock " << reproduct_clock <<" food clock " << food_clock << "\n" << "x_coord " << this->position.x << "\n";
     sf::Vector2f newPosition = this->position + this->moveSpeed * delta * direction * time_scale;
     if (this->prev_position == sf::Vector2f(-1.0f, -1.0f)){
         this->prev_position = this->position; 
@@ -76,7 +79,7 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
                 continue;
             }
             if (this->getSqrDistanceTo((*animalArr)[i]) < 25*this->viewRarius*this->viewRarius){
-                if ((this->typeName==(*animalArr)[i]->typeName) && ((*animalArr)[i]->typeName == this->attractors[j]) && (this->has_eaten) && (this->reproduct_clock.getElapsedTime().asSeconds() * time_scale > this->reproduction_max)){
+                if ((this->typeName==(*animalArr)[i]->typeName) && ((*animalArr)[i]->typeName == this->attractors[j]) && (this->has_eaten) && (this->reproduct_clock * time_scale > this->reproduction_max)){
                     if (closestAttr == NULL){
                         closestAttr = (*animalArr)[i];
                         continue;
@@ -104,17 +107,17 @@ sf::Vector2f Animals::aiDirection(std::vector<Animals*>* animalArr, bool repulso
     }
 
     if(closestRep==NULL and closestAttr==NULL){
-        if (reproduct_clock.getElapsedTime().asSeconds() > idle_sec_count + idle_change_time / time_scale){
-            idle_sec_count = floor(reproduct_clock.getElapsedTime().asSeconds());
+        if (reproduct_clock > idle_sec_count + idle_change_time / time_scale){
+            idle_sec_count = reproduct_clock;
             // std::random_device rd;   // non-deterministic generator
             // std::mt19937 gen(rd());  // to seed mersenne twister.
             // std::uniform_int_distribution<> dist(0, 100);
             // float angle = dist(gen);
             float angle = this->random_seed * 30;
-            idle_direction = sf::Vector2f(sin(angle/50*3.14),cos(angle/50*3.14));
+            this->idle_direction = sf::Vector2f(sin(angle/50*3.14),cos(angle/50*3.14));
             this->random_seed += 2;
         }
-        return idle_direction;
+        return this->idle_direction;
     }
 
     sf::Vector2f diff;
@@ -168,14 +171,14 @@ bool Animals::foodCheck(std::vector<Animals*>* animalArr, float time_scale){
                                                     1.5 * (this->collisionRadius + (*animalArr)[i]->collisionRadius))){
             // cout << this->reproduct_clock.getElapsedTime().asSeconds() << endl;
             if (((*animalArr)[i]->typeName == this->typeName) && ((*animalArr)[i]->alive) && 
-                (this->reproduct_clock.getElapsedTime().asSeconds() * time_scale > this->reproduction_max) && 
-                ((*animalArr)[i]->reproduct_clock.getElapsedTime().asSeconds() * time_scale > (*animalArr)[i]->reproduction_max) && 
+                (this->reproduct_clock * time_scale > this->reproduction_max) && 
+                ((*animalArr)[i]->reproduct_clock * time_scale > (*animalArr)[i]->reproduction_max) && 
                 (this->has_eaten) && (*animalArr)[i]->has_eaten){
                     repr_check = true;
                     cout << "repr_check set to true" << endl;
-                    this->reproduct_clock.restart();
+                    this->reproduct_clock = 0;
                     this->idle_sec_count = 0;
-                    (*animalArr)[i]->reproduct_clock.restart();
+                    (*animalArr)[i]->reproduct_clock = 0;
             }
             for (int j = 0; j < this->food.size(); j++){
                 if (((*animalArr)[i]->typeName == this->food[j]) && ((*animalArr)[i]->alive)){
@@ -183,12 +186,12 @@ bool Animals::foodCheck(std::vector<Animals*>* animalArr, float time_scale){
                     (*animalArr)[i]->deathAnimationPercent = 100;
                     cout << this->typeName << " eaten " << (*animalArr)[i]->typeName << endl;
                     this->has_eaten = true;
-                    this->food_clock.restart();
+                    this->food_clock = 0;
                 }
             }
         }
     }
-    if (this->food_clock.getElapsedTime().asSeconds() * time_scale > this->food_max){
+    if (this->food_clock * time_scale > this->food_max){
         this->alive = false;
         this->has_eaten = false;
         this->deathAnimationPercent = 100;
@@ -209,4 +212,6 @@ Animals::Animals(){
     this->idle_sec_count = 0;
     this->idle_change_time = 15;
     this->has_eaten = false;
+    this->food_clock = 0;
+    this->reproduct_clock = 0;
 }

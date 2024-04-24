@@ -41,8 +41,8 @@ protected:
     bool has_eaten;
 public:
     float random_seed;
-    sf::Clock food_clock;
-    sf::Clock reproduct_clock;
+    float food_clock;
+    float reproduct_clock;
     bool forcedReturn; // shit for collision
     sf::Vector2f position; //------change back to protected -- maybe sometime later :/
     int animFrame=0;
