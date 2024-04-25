@@ -2,7 +2,7 @@
 #include "../Field/Field.hpp"
 
 
-class Button{
+class Button{ //класс кнопки для интерфейса
     protected:
         enum buttonType{
             NONE,
@@ -21,8 +21,8 @@ class Button{
         sf::Sprite selfSprite;
         Button(sf::Sprite,sf::Texture);
         Button(sf::Sprite,sf::Texture, Field *field, string);
-        bool checkPress(sf::Vector2f);
+        bool checkPress(sf::Vector2f);//вернёт true если точка нажатия внутри кнопки
         // bool focused(sf::Vector2f);
-        void press();
-        void useOnMap(int x, int y);
+        void press();//выполнить действие по нажатию
+        void useOnMap(int x, int y);//действие на карте по конкретным координатам
 };

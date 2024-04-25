@@ -25,8 +25,8 @@ class plot{
     public:
         plot(int x, int y, int h, int w, int dataSize, std::string text, Field *f, string trObjName);
 
-        void update();
-        void plotOnWin(sf::RenderWindow *w);
+        void update();//сбор информации и обновление массива data
+        void plotOnWin(sf::RenderWindow *w);//отрисовка на экране
         int getVal();
         std::string getName();
 };
