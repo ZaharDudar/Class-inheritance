@@ -27,6 +27,5 @@ class plot{//класс графиков в интерфейсе
 
         void update();//сбор информации и обновление массива data
         void plotOnWin(sf::RenderWindow *w);//отрисовка на экране
-        ~plot(){delete[] data;}
 };
 
